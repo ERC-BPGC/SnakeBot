@@ -9,7 +9,7 @@ from mpl_toolkits import mplot3d
 colors =['green','red','blue','yellow']
 k=1#do not change
 A=1
-delta_guess=0.1# have to vary using A and K
+delta_guess=0.1# have to vary based  on A and K
 vertical_scale =1
 
 answers = []
@@ -22,7 +22,7 @@ def equations(vars):
     return [eq1,eq2,eq3]
 
 def points(x0,y0,z0):
-    sol = fsolve(equations,[x0+delta,y0,z0])
+    sol = fsolve(equations,[x0+delta_guess,y0,z0])
     return tuple(sol)
 x0 = 0
 y0 = 0
