@@ -51,7 +51,7 @@ colors =['green','red','blue']
 NOTE
 The code may not function properly if the segment length and amplitudes are too large.
 For example, if the segment length is set to 6, the amplitudes set to 8, andwavelength 25, the calculations may not converge or yield the desired results.
-It is recommended to scale down the inputs proportionally. For instance, instead of using 6, 8, 8, you can use 0.6, 0.8, 0.8,2.5 respectively.
+It is recommended to scale down the inputs proportionally. For instance, instead of using 6, 8, 8, and 25, you can use 0.6, 0.8, 0.8,2.5 respectively.
 '''
 req_rods=int(input("Enter the required number of segments: "))
 req_length = float(input("Enter the required length between two servo joints: "))
