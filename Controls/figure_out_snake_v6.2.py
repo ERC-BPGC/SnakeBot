@@ -125,6 +125,9 @@ for i in range(0,len(answers)-1):
     if i:
         angles_relative.append(tuple([round(180+angles_ground_apparent[i][0]-angles_ground_apparent[i-1][0],3),round(180+angles_ground_apparent[i][1]-angles_ground_apparent[i-1][1],3)]))
         angles_real.append(tuple([round(180+angles_ground_real[i][0]-angles_ground_real[i-1][0],3),round(180+angles_ground_real[i][1]-angles_ground_real[i-1][1],3)]))
+angles_relative.append(tuple([round(180+angles_ground_apparent[0][0]-angles_ground_apparent[-1][0],3),round(180+angles_ground_apparent[0][1]-angles_ground_apparent[-1][1],3)]))
+angles_real.append(tuple([round(180+angles_ground_real[0][0]-angles_ground_real[-1][0],3),round(180+angles_ground_real[0][1]-angles_ground_real[-1][1],3)]))
+
 
 # Print the calculated relative angles
 print("The relative angles are:")
