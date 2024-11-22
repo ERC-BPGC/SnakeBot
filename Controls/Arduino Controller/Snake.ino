@@ -40,6 +40,9 @@ void loop() {
 
   // Serial.print("Moving...");
   for(int i=0; i<n; i++){
+    if(i==1||i==4)angles_test[(i+x)%n][0]=-angles_test[(i+x)%n][0];
+    if(i==2||i==3)angles_test[(i+x)%n][0]=-angles_test[(i+x)%n][1];
+    
     s1[i].write(angles_test[(i+x)%n][0]+off[i][0]);
     s2[i].write(angles_test[(i+x)%n][1]+off[i][1]);
     // delay(250);
