@@ -28,6 +28,8 @@ void setup() {
 }
 
 void loop() {
+
+  // Input real time calculations (when not in testing phase)
   // Serial.print("Enter...");
   // for(int i=0; i<n; i++){
   //   for(int j=0; j<2; j++){
