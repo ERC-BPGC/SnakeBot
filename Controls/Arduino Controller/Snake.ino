@@ -40,6 +40,8 @@ void loop() {
 
   // Serial.print("Moving...");
   for(int i=0; i<n; i++){
+    angles_test[(i+x)%n][0]= constrain(angles_test[(i+x)%n][0], -20,20);
+    
     if(i==1||i==4)angles_test[(i+x)%n][0]=-angles_test[(i+x)%n][0];
     if(i==1||i==2)angles_test[(i+x)%n][0]=-angles_test[(i+x)%n][1];
     
