@@ -6,18 +6,12 @@ import numpy as np
 import serial
 import matplotlib.pyplot as plt
 import time 
-
-from math import atan
-from math import sqrt
-from mpl_toolkits import mplot3d
+import math
+from math import atan,sin, cos, sqrt
 from matplotlib.animation import FuncAnimation
 from scipy.interpolate import splprep, splev
 from copy import deepcopy
-
-ser = serial.Serial('COM8', 115200, timeout=1)
-time.sleep(2)  # Wait for connection to stabilize
-
-
+import keyboard
 # spline_func should be a function that returns x, y, z given a parameter `u`
 def spline_func(u):
     return splev(u, tck)  # Assuming you have tck from splprep
@@ -36,22 +30,25 @@ still_not_found =True
 colors =['red','blue']
 
 # User inputs for required number of segments, length, amplitudes, wavelength, and error margin
-num_segments=int(input("Enter the required number of segments: "))+1
-req_length = float(input("Enter the required length between two servo joints: "))
-req_amplitude_z = float(input("Enter the required amplitude in the z axis:"))
-req_amplitude_y = float(input("Enter the required amplitude in the y axis:"))
-num_path_points = int(input("Enter the number of points: "))
-
-# Initialize lists to store x and y coordinates
-path_points_x = [0]
-path_points_y = [0]
+num_segments=5#int(input("Enter the required number of segments: "))+1
+req_length = 1.14#cad measured value #float(input("Enter the required length between two servo joints: "))
+req_amplitude_z = 0.8#float(input("Enter the required amplitude in the z axis:"))
+req_amplitude_y = 1.1#float(input("Enter the required amplitude in the y axis:"))
+A1=0
+num_path_points = 0
+R=req_length/2#radius of the virtual rolling joint approximate sphere
+approximation_circle_dist=0.17
+# Initialize lists to store x and y coordinates, starts from origin
+path_points_x = [0,3,4,6]
+path_points_y = [0,3,4,9]
+frequency = 2#float(input("Enter the frequency(number of sine waves ): ")) #I know that ive named it wavelength, but for some reason still sort of acting like frequency
 
 # Take input for the coordinates
-for i in range(num_path_points):
-    x = float(input(f"Enter x-coordinate of point {i+1}: "))
-    y = float(input(f"Enter y-coordinate of point {i+1}: "))
-    path_points_x.append(x)
-    path_points_y.append(y)
+# for i in range(num_path_points):
+#     x_coord = float(input(f"Enter x-coordinate of point {i+1}: "))
+#     y_coord = float(input(f"Enter y-coordinate of point {i+1}: "))
+#     path_points_x.append(x_coord)
+#     path_points_y.append(y_coord)
 
 
 # Convert lists to a numpy array
@@ -73,8 +70,6 @@ dx_normalized = -dy / magnitude
 dy_normalized = dx / magnitude
 
 # Set initial amplitude and frequency
-amplitude = 0.5
-frequency = float(input("Enter the frequency(number of sine waves ): ")) #I know that ive named it wavelength, but for some reason still sort of acting like frequency
 
 # Create a 3D plot
 fig = plt.figure()
@@ -90,13 +85,14 @@ ax.plot(x_new, y_new, np.zeros_like(x_new), label='Original Spline', color='red'
 
 #plotting sine wave
 # Initial sine wave plot in 3D
-x_sine_wave = x_new + req_amplitude_y * np.sin(2 * np.pi *frequency * u_new) * dx_normalized
-y_sine_wave = y_new + req_amplitude_y * np.sin(2 * np.pi *frequency * u_new) * dy_normalized
+x_sine_wave =A1+ x_new + req_amplitude_y * np.sin(2 * np.pi *frequency * u_new) * dx_normalized
+y_sine_wave = A1+y_new + req_amplitude_y * np.sin(2 * np.pi *frequency * u_new) * dy_normalized
 z_wave = req_amplitude_z * np.abs(np.sin(2 * np.pi *frequency * u_new))
 
 sine_wave_line, = ax.plot(x_sine_wave, y_sine_wave, z_wave, label='3D Spline with Sine Waves', color='green')
 print(type(x_sine_wave),type(y_sine_wave))
 print(x_sine_wave[1])
+
 
 xyz = [[x_sine_wave[i], y_sine_wave[i], z_wave[i]] for i in range(len(x_sine_wave))]
 xyz2=np.transpose(np.array([x_sine_wave,y_sine_wave,z_wave]))
@@ -148,18 +144,17 @@ while(offset<accuracylevel):
 
 
     angles_relative_per_iteration.clear()
-    offset+=int(accuracylevel/100)
+    offset+=int(accuracylevel/150)
     answers_per_iteration.append([x_sine_wave[offset],y_sine_wave[offset],z_wave[offset]])
-
 
 # for item in answers:
 #     print(item)
-print(answers)
-print()
+
 for item in angles_real:
     print(item)#(horizontal,vertial)
 
 
+print(len(angles_real))
 
 
 
@@ -182,40 +177,63 @@ def update(frame):
     """Update function for animation"""
     data = np.array(answers[frame])  # Get points for the current frame
     x, y, z = data[:, 0], data[:, 1], data[:, 2]
-    
     # Update line data
     line.set_data(x, y)
     line.set_3d_properties(z)
-    
     return line,
 
-
 ani = FuncAnimation(fig, update, frames=len(answers), interval=50, blit=False)
-
-
-
 
 plt.legend()
 plt.grid(True)
 plt.show()
+
 # PySerial for iteratively sending the angles to Arduino board 
-while(True):
+ser = serial.Serial('COM8', 230400, timeout=1)
+time.sleep(2)  # Wait for connection to stabilize
+
+
+tempcount = 1
+wantToSend=True
+while(wantToSend):
 
     for angles_set in angles_real:  # Iterate over the angle sets
+        angle_data= ""
         for angle_pair in angles_set:  # Each set contains tuples of two angles
-            angle_data = f"{int(angle_pair[0])-90}/{int(angle_pair[1])-90},"  # Format as comma-separated values ***(horizontal,vertical)***
-            ser.write(angle_data.encode())  # Send as bytes
-            print(f"Sent: {angle_data.strip()}")  # Print sent data (for debugging)
-            time.sleep(0.1)
-        ser.write("\n".encode())
-        # response = ser.readline().decode().strip()  # Read   serial buffer
+            '''this modified angle is due to the design of the modules in v2(virtual rolling joint)'''
+            angle_1 = atan(R*sin((180-angle_pair[0])*np.pi/180)/(R*cos((180-angle_pair[0])*np.pi/180)-approximation_circle_dist))*180/np.pi
+            angle_2 = atan(R*sin((180-angle_pair[1])*np.pi/180)/(R*cos((180-angle_pair[1])*np.pi/180)-approximation_circle_dist))*180/np.pi
+            # print(angle_1,"meow",angle_2)
+            angle_data += f"{min(110,max(90-int(angle_1),70))}/{min(110,max(90-int(angle_2),70))},"  # Format as comma-separated values ***(horizontal,vertical)***
+        angle_data+="\n"
+        ser.write(angle_data.encode())  # Send as bytes
+        # ser.write("\n".encode())
+        print(angle_data, tempcount)
+        time.sleep(0.055)
+        tempcount+=1
+        if(keyboard.is_pressed('p')):
+            print("paused")
+            time.sleep(2)
+
+            while(True):
+                if(keyboard.is_pressed('p')):
+                    print("continuing")
+                    time.sleep(2)
+                    break
+                if(keyboard.is_pressed('q')):
+                    print("quitting")
+                    wantToSend=False
+                    break
+        if(not wantToSend):
+            break
+        # response = ser.readline().decode().strip()  # Read   serial buffer5
         # time.sleep(10)
         # if response:    
         #     print(f"Received: {response}")  # Print received data
-    print("Serial communication finished.")
-    if(input("Press R to restart sending angle commands: ")!='R'):
-        print("Ending Execution")
-        ser.close()  # Close serial connection
-        break
-    else :
-        print("Restarting angle commands")
+    # print("Serial communication finished.")
+    # if(input("Press R to restart sending angle commands: ").upper()!='R'):
+    #     print("Ending Execution")
+    #     ser.close()  # Close serial connection
+    #     break
+    # else :
+    #     print("Restarting angle commands")
