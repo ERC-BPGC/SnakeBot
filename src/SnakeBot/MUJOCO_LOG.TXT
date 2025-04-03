@@ -1,0 +1,12 @@
+Fri Mar 14 00:51:58 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 12. The simulation is unstable. Time = 0.0120.
+
+Sat Mar 15 23:51:06 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 8. The simulation is unstable. Time = 0.0160.
+
+Sat Mar 15 23:51:41 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 8. The simulation is unstable. Time = 0.0160.
+
+Sat Mar 15 23:52:06 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 6. The simulation is unstable. Time = 0.0120.
+

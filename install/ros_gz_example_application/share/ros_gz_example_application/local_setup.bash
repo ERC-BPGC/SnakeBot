@@ -1,0 +1,1 @@
+/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application/ament_cmake_environment_hooks/local_setup.bash

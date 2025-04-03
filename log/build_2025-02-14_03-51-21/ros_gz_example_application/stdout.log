@@ -1,0 +1,6 @@
+-- Found ament_cmake: 2.5.2 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found rclpy: 7.1.2 (/opt/ros/jazzy/share/rclpy/cmake)
+-- Configuring done (0.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application
+-- Install configuration: ""

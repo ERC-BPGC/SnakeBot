@@ -1,0 +1,389 @@
+<?xml version="1.0"?>
+<robot name="snake_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Global scale factor: change this value to scale the entire robot -->
+  <xacro:property name="scale_factor" value="0.001"/>
+
+  <!-- *************************************************************** -->
+  <!-- Material Definitions -->
+  <!-- *************************************************************** -->
+  <!-- Blue material definition for robot visualization -->
+  <material name="blue">
+    <color rgba="0 0 0.8 1" />
+  </material>
+  <xacro:property name="mesh_base" value="package://ros_gz_example_description/models/snakebot/meshes/snake_base.stl" />
+  <xacro:property name="mesh_rotary" value="package://ros_gz_example_description/models/snakebot/meshes/rotary.stl" />
+     <xacro:property name="mesh_rod_short" value="package://ros_gz_example_description/models/snakebot/meshes/rod.stl" />
+     <xacro:property name="mesh_rod_long" value="package://ros_gz_example_description/models/snakebot/meshes/rodsupport.stl" />
+
+  <!-- Red material definition for robot visualization -->
+  <material name="red">
+    <color rgba="1 0 0 1" />
+  </material>
+
+  <material name="green">
+  <color rgba="0 1 0 1" />
+</material>
+
+<!-- Gray material definition -->
+<material name="gray">
+  <color rgba="0.5 0.5 0.5 1" />
+</material>
+
+  <!-- *************************************************************** -->
+  <!-- Base Link Definition -->
+  <!-- *************************************************************** -->
+  <!-- Defines the base link of the robot with visual, collision, and inertial properties -->
+  <link name="base_footprint">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+    </visual>
+  </link>
+
+  <joint name="body_link_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <!-- Scaled offset for the base link -->
+      <origin rpy="3.14159 0 0" xyz="0 ${0.528 * scale_factor} 0" />
+      <geometry>
+        <mesh filename="${mesh_base}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_base}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+  <joint name="joint_base_to_rotary_r_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="rotary_link_r_1"/>
+    <origin rpy="0 -0.7853975 0" xyz="${ 5 * scale_factor} ${-10 * scale_factor} ${5 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+  <link name="rotary_link_r_1">
+    <visual>
+      <origin rpy="0 0 3.14159" xyz="${ 0* scale_factor} ${10 * scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="red" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+  <joint name="joint_base_to_rotary_p_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="rotary_link_p_1"/>
+    <origin rpy="0 0 0" xyz="${ -69 * scale_factor} ${-10 * scale_factor} ${0 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+  <link name="rotary_link_p_1">
+    <visual>
+      <origin rpy="0 0 3.14159" xyz="${ 0* scale_factor} ${10 * scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="green" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+   <joint name="joint_base_to_rotary_y_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="rotary_link_y_1"/>
+    <origin rpy="0 -1.57 0" xyz="${ -0 * scale_factor} ${-10 * scale_factor} ${-69 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+  <link name="rotary_link_y_1">
+    <visual>
+      <origin rpy="0 0 3.14159" xyz="${ 0* scale_factor} ${10 * scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+  <joint name="joint_rotary_to_rod_y_1" type="revolute">
+    <parent link="rotary_link_y_1"/>
+    <child link="rod_link_y_1"/>
+    <axis xyz="0 0 1"/> 
+    <origin rpy="0 0 0" xyz="${ 35 * scale_factor} ${-12.5 * scale_factor} ${-0 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1"/>
+  </joint>
+
+  <link name="rod_link_y_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="${ 35* scale_factor} ${-47.5* scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rod_short}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rod_short}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+  <joint name="joint_rotary_to_rod_p_1" type="revolute">
+    <parent link="rotary_link_p_1"/>
+    <child link="rod_link_p_1"/>
+    <axis xyz="0 0 1"/> 
+    <origin rpy="0 0 0" xyz="${ 35 * scale_factor} ${-12.5 * scale_factor} ${-0 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+  <link name="rod_link_p_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="${ 35* scale_factor} ${-47.5* scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rod_short}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="green" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rod_short}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+ <joint name="joint_rotary_to_rod_r_1" type="revolute">
+    <parent link="rotary_link_r_1"/>
+    <child link="rod_link_r_1"/>
+    <axis xyz="0 0 1"/> 
+    <origin rpy="0 3.14 0" xyz="${ 35 * scale_factor} ${-12.5 * scale_factor} ${-0 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+  <link name="rod_link_r_1">
+    <visual>
+      <origin rpy="0 0 0" xyz="${ 45* scale_factor} ${-47.5* scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rod_long}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="red" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rod_short}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+
+   <!--  -->
+   <joint name="joint_rotary_to_rod_y_2" type="revolute">
+    <parent link="rod_link_y_1"/>
+    <child link="rotary_link_y_2"/>
+    <axis xyz="0 0 1"/> 
+    <origin rpy="0 0 0" xyz="${ 70* scale_factor} ${-55 * scale_factor} ${-0 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+
+  </joint>
+
+   <link name="rotary_link_y_2">
+    <visual>
+      <origin rpy="0 0 0" xyz="${ 35* scale_factor} ${-23 * scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+   <joint name="joint_rotary_to_rod_p_2" type="revolute">
+    <parent link="rod_link_p_1"/>
+    <child link="rotary_link_p_2"/>
+    <axis xyz="0 0 1"/> 
+    <origin rpy="0 0 0" xyz="${ 70* scale_factor} ${-55 * scale_factor} ${-0 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+   <link name="rotary_link_p_2">
+    <visual>
+      <origin rpy="0 0 0" xyz="${ 35* scale_factor} ${-23 * scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="green" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+  <joint name="joint_rotary_to_rod_r_2" type="revolute">
+    <parent link="rod_link_r_1"/>
+    <child link="rotary_link_r_2"/>
+    <axis xyz="0 0 1"/> 
+    <origin rpy="0 0 0" xyz="${ 90* scale_factor} ${-55 * scale_factor} ${-0 * scale_factor} "/>
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+   <link name="rotary_link_r_2">
+    <visual>
+      <origin rpy="0 0 0" xyz="${ 35* scale_factor} ${-23 * scale_factor} ${0* scale_factor}" />
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="red" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_rotary}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+  
+
+  <joint name="joint_base_to_rotary_p_2" type="revolute">
+  <parent link="rotary_link_p_2"/>
+  <child link="base_2"/>
+  <origin rpy="0 0 0" xyz="${ -35 * scale_factor} ${-15 * scale_factor} 0"/>
+  <axis xyz="1 0 0"/>
+  <limit effort="100" lower="-1.57" upper="1.57" velocity="1"/>
+</joint>
+
+
+  
+  
+<!-- 1.57 -->
+  
+  <link name="base_2">
+    <visual>
+      <origin rpy="0 3.14 0" xyz="0 ${-10 * scale_factor} 0" />
+      <geometry>
+        <mesh filename="${mesh_base}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${mesh_base}" 
+              scale="${scale_factor} ${scale_factor} ${scale_factor}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${0.0525}" />
+      <inertia ixx="${0.1}" ixy="0.0" ixz="0.0" 
+               iyy="${0.1}" iyz="0.0" 
+               izz="${0.1}" />
+    </inertial>
+  </link>
+
+</robot>

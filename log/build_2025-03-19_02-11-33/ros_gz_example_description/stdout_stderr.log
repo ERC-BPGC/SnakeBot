@@ -1,0 +1,32 @@
+-- Found ament_cmake: 2.5.3 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found ament_lint_auto: 0.17.1 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+-- Configuring done (0.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/frictional_world.sdf
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/cross.stl
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/module.stl
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/motor.stl
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/rod.stl
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/rodsupport.stl
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/rotary.stl
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/snake_base.stl
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/snake_robot_V2.xacro
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/robot.gazebo
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot.xacro
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_V2.xacro
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_scaleddown copy.xacro
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_scaleddown.xacro
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_wokrbale copy.xacro
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_wokrbale.urdf
+[31mCMake Error at ament_cmake_symlink_install/ament_cmake_symlink_install.cmake:100 (message):
+  ament_cmake_symlink_install_directory() can't find
+  '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/ros_gz_example_description/mojoco/'
+Call Stack (most recent call first):
+  ament_cmake_symlink_install/ament_cmake_symlink_install.cmake:314 (ament_cmake_symlink_install_directory)
+  cmake_install.cmake:46 (include)
+
+[0m

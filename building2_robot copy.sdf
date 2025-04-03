@@ -1,0 +1,1089 @@
+<sdf version='1.11'>    <world name="car_world">
+
+<model name="ground_plane">
+            <static>true</static>
+            <link name="link">
+                <collision name="collision">
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    </plane>
+                </geometry>
+                </collision>
+                <visual name="visual">
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    <size>100 100</size>
+                    </plane>
+                </geometry>
+                <material>
+                    <ambient>0.8 0.8 0.8 1</ambient>
+                    <diffuse>0.8 0.8 0.8 1</diffuse>
+                    <specular>0.8 0.8 0.8 1</specular>
+                </material>
+                </visual>
+            </link>
+        </model>
+  <model name='snake_robot'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0.52800000000000002 0 3.1415899999999999 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint2' type='revolute'>
+      <pose relative_to='base_link'>0 0 0 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>cross1</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='cross1'>
+      <pose relative_to='joint2'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='cross1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='cross1_visual'>
+        <pose>0.065000000000000002 -0.55800000000000005 0.065000000000000002 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint1' type='revolute'>
+      <pose relative_to='cross1'>0 0 0 0 0 0</pose>
+      <parent>cross1</parent>
+      <child>segment1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='segment1'>
+      <pose relative_to='joint1'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.29999999999999999 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.37999999999999989</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.20000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.37999999999999989</izz>
+        </inertia>
+      </inertial>
+      <collision name='segment1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='segment1_fixed_joint_lump__segment2a_collision_1'>
+        <pose>0 -0.59999999999999998 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='segment1_visual'>
+        <pose>0 -0.53000000000000003 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='segment1_fixed_joint_lump__segment2a_visual_1'>
+        <pose>0 -0.59999999999999998 0 0 0 3.1415899999999999</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4' type='revolute'>
+      <pose relative_to='segment1'>0 -1.1220000000000001 0 0 0 0</pose>
+      <parent>segment1</parent>
+      <child>cross2</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='cross2'>
+      <pose relative_to='joint4'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='cross2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='cross2_visual'>
+        <pose>0.065000000000000002 -0.55800000000000005 0.065000000000000002 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint3' type='revolute'>
+      <pose relative_to='cross2'>0 0 0 0 0 0</pose>
+      <parent>cross2</parent>
+      <child>segment2b</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='segment2b'>
+      <pose relative_to='joint3'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.29999999999999999 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.37999999999999989</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.20000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.37999999999999989</izz>
+        </inertia>
+      </inertial>
+      <collision name='segment2b_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='segment2b_fixed_joint_lump__segment3a_collision_1'>
+        <pose>0 -0.59999999999999998 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='segment2b_visual'>
+        <pose>0 -0.55800000000000005 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='segment2b_fixed_joint_lump__segment3a_visual_1'>
+        <pose>0 -0.59999999999999998 0 0 0 3.1415899999999999</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint6' type='revolute'>
+      <pose relative_to='segment2b'>0 -1.1220000000000001 0 0 0 0</pose>
+      <parent>segment2b</parent>
+      <child>cross3</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='cross3'>
+      <pose relative_to='joint6'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='cross3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='cross3_visual'>
+        <pose>0.065000000000000002 -0.55800000000000005 0.065000000000000002 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint5' type='revolute'>
+      <pose relative_to='cross3'>0 0 0 0 0 0</pose>
+      <parent>cross3</parent>
+      <child>segment3b</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='segment3b'>
+      <pose relative_to='joint5'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.29999999999999999 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.37999999999999989</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.20000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.37999999999999989</izz>
+        </inertia>
+      </inertial>
+      <collision name='segment3b_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='segment3b_fixed_joint_lump__segment4a_collision_1'>
+        <pose>0 -0.59999999999999998 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='segment3b_visual'>
+        <pose>0 -0.55800000000000005 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='segment3b_fixed_joint_lump__segment4a_visual_1'>
+        <pose>0 -0.59999999999999998 0 0 0 3.1415899999999999</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint8' type='revolute'>
+      <pose relative_to='segment3b'>0 -1.1220000000000001 0 0 0 0</pose>
+      <parent>segment3b</parent>
+      <child>cross4</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='cross4'>
+      <pose relative_to='joint8'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='cross4_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='cross4_visual'>
+        <pose>0.065000000000000002 -0.55800000000000005 0.065000000000000002 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint7' type='revolute'>
+      <pose relative_to='cross4'>0 0 0 0 0 0</pose>
+      <parent>cross4</parent>
+      <child>segment4b</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='segment4b'>
+      <pose relative_to='joint7'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.29999999999999999 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.37999999999999989</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.20000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.37999999999999989</izz>
+        </inertia>
+      </inertial>
+      <collision name='segment4b_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='segment4b_fixed_joint_lump__segment5a_collision_1'>
+        <pose>0 -0.59999999999999998 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='segment4b_visual'>
+        <pose>0 -0.55800000000000005 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='segment4b_fixed_joint_lump__segment5a_visual_1'>
+        <pose>0 -0.59999999999999998 0 0 0 3.1415899999999999</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint10' type='revolute'>
+      <pose relative_to='segment4b'>0 -1.1220000000000001 0 0 0 0</pose>
+      <parent>segment4b</parent>
+      <child>cross5</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='cross5'>
+      <pose relative_to='joint10'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='cross5_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='cross5_visual'>
+        <pose>0.065000000000000002 -0.55800000000000005 0.065000000000000002 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint9' type='revolute'>
+      <pose relative_to='cross5'>0 0 0 0 0 0</pose>
+      <parent>cross5</parent>
+      <child>segment5b</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='segment5b'>
+      <pose relative_to='joint9'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.29999999999999999 0 0 0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.37999999999999989</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.20000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.37999999999999989</izz>
+        </inertia>
+      </inertial>
+      <collision name='segment5b_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='segment5b_fixed_joint_lump__segment6a_collision_1'>
+        <pose>0 -0.59999999999999998 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='segment5b_visual'>
+        <pose>0 -0.55800000000000005 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='segment5b_fixed_joint_lump__segment6a_visual_1'>
+        <pose>0 -0.59999999999999998 0 0 0 3.1415899999999999</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint12' type='revolute'>
+      <pose relative_to='segment5b'>0 -1.1220000000000001 0 0 0 0</pose>
+      <parent>segment5b</parent>
+      <child>cross6</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='cross6'>
+      <pose relative_to='joint12'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='cross6_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='cross6_visual'>
+        <pose>0.065000000000000002 -0.55800000000000005 0.065000000000000002 0 0 0</pose>
+        <geometry>
+         <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint11' type='revolute'>
+      <pose relative_to='cross6'>0 0 0 0 0 0</pose>
+      <parent>cross6</parent>
+      <child>segment6b</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.5700000000000001</lower>
+          <upper>1.5700000000000001</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='segment6b'>
+      <pose relative_to='joint11'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.10000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.10000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.10000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='segment6b_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='segment6b_visual'>
+        <pose>0 -0.55800000000000005 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <mesh>
+            <uri>file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl</uri>
+                  <scale>0.05 0.05 0.05 </scale>
+     </mesh>
+</geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <plugin name='gazebo_ros2_control' filename='libgazebo_ros2_control.so'>
+      <robotNamespace>/snake_robot</robotNamespace>
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
+      <parameters>/home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/config/snake_controllers.yaml</parameters>
+    </plugin>
+    <frame name='joint_fix_mod_2' attached_to='segment1'>
+      <pose>0 -0.59999999999999998 0 0 0 0</pose>
+    </frame>
+    <frame name='segment2a' attached_to='joint_fix_mod_2'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='joint_fix_mod_3' attached_to='segment2b'>
+      <pose>0 -0.59999999999999998 0 0 0 0</pose>
+    </frame>
+    <frame name='segment3a' attached_to='joint_fix_mod_3'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='joint_fix_mod_4' attached_to='segment3b'>
+      <pose>0 -0.59999999999999998 0 0 0 0</pose>
+    </frame>
+    <frame name='segment4a' attached_to='joint_fix_mod_4'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='joint_fix_mod_5' attached_to='segment4b'>
+      <pose>0 -0.59999999999999998 0 0 0 0</pose>
+    </frame>
+    <frame name='segment5a' attached_to='joint_fix_mod_5'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='joint_fix_mod_6' attached_to='segment5b'>
+      <pose>0 -0.59999999999999998 0 0 0 0</pose>
+    </frame>
+    <frame name='segment6a' attached_to='joint_fix_mod_6'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+  </world>
+</sdf>

@@ -1,0 +1,29 @@
+[0.017s] Invoking command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application -- -j12 -l12
+[0.049s] -- Found ament_cmake: 2.5.2 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.429s] -- Found rclpy: 7.1.2 (/opt/ros/jazzy/share/rclpy/cmake)
+[0.568s] -- Configuring done (0.5s)
+[0.573s] -- Generating done (0.0s)
+[0.575s] -- Build files have been written to: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application
+[0.624s] Invoked command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application -- -j12 -l12
+[0.627s] Invoking command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application
+[0.647s] -- Install configuration: ""
+[0.647s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/lib/ros_gz_example_application/publish_joint_angles.py
+[0.648s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/lib/ros_gz_example_application/publish_joint_angles_cpg_from_paper_faked.py
+[0.648s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/lib/ros_gz_example_application/snakebot_cpg_ros2_keycontrol.py
+[0.649s] -- Installing: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/lib/ros_gz_example_application/compute_com.py
+[0.649s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ament_index/resource_index/package_run_dependencies/ros_gz_example_application
+[0.649s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ament_index/resource_index/parent_prefix_path/ros_gz_example_application
+[0.650s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/environment/ament_prefix_path.sh
+[0.650s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/environment/ament_prefix_path.dsv
+[0.651s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/environment/path.sh
+[0.652s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/environment/path.dsv
+[0.652s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/local_setup.bash
+[0.654s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/local_setup.sh
+[0.655s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/local_setup.zsh
+[0.657s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/local_setup.dsv
+[0.657s] -- Installing: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/package.dsv
+[0.657s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ament_index/resource_index/packages/ros_gz_example_application
+[0.657s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/cmake/ros_gz_example_applicationConfig.cmake
+[0.658s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/cmake/ros_gz_example_applicationConfig-version.cmake
+[0.658s] -- Up-to-date: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application/share/ros_gz_example_application/package.xml
+[0.658s] Invoked command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application

@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-b29546ce3c71fa4c0e59.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ros_gz_example_gazebo",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "BasicSystem::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BasicSystem-cad48d34a8842744bd92.json",
+					"name" : "BasicSystem",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "FullSystem::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-FullSystem-366860f6a9580d2ffb7d.json",
+					"name" : "FullSystem",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ros_gz_example_gazebo_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ros_gz_example_gazebo_uninstall-537c47eb95972d8b5ed2.json",
+					"name" : "ros_gz_example_gazebo_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-9bc9287705830ce876b6.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_gazebo",
+		"source" : "/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/ros_gz_example_gazebo"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

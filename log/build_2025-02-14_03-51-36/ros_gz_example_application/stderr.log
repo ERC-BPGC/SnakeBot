@@ -1,0 +1,5 @@
+[31mCMake Error at CMakeLists.txt:9 (install):
+  install PROGRAMS given directory "src" to install.
+
+[0m
+gmake: *** [Makefile:226: cmake_check_build_system] Error 1

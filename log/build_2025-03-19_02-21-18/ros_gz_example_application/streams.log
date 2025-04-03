@@ -1,0 +1,22 @@
+[0.017s] Invoking command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/ros_gz_example_application -DCMAKE_INSTALL_PREFIX=/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application
+[0.039s] -- Found ament_cmake: 2.5.3 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.320s] -- Found rclpy: 7.1.3 (/opt/ros/jazzy/share/rclpy/cmake)
+[0.346s] Traceback (most recent call last):
+[0.347s]   File "/opt/ros/jazzy/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py", line 22, in <module>
+[0.347s]     from catkin_pkg.package import parse_package_string
+[0.347s] ModuleNotFoundError: No module named 'catkin_pkg'
+[0.351s] [31mCMake Error at /opt/ros/jazzy/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:95 (message):
+[0.351s]   
+[0.351s]   execute_process(/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/myenv/bin/python3
+[0.351s]   /opt/ros/jazzy/share/ament_cmake_core/cmake/core/package_xml_2_cmake.py
+[0.352s]   /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/ros_gz_example_application/package.xml
+[0.352s]   /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application/ament_cmake_core/package.cmake)
+[0.352s]   returned error code 1
+[0.352s] Call Stack (most recent call first):
+[0.352s]   /opt/ros/jazzy/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:49 (_ament_package_xml)
+[0.352s]   /opt/ros/jazzy/share/ament_cmake_core/cmake/core/ament_package.cmake:63 (ament_package_xml)
+[0.352s]   CMakeLists.txt:20 (ament_package)
+[0.352s] 
+[0.352s] [0m
+[0.352s] -- Configuring incomplete, errors occurred!
+[0.360s] Invoked command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_application' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ /usr/bin/cmake /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/ros_gz_example_application -DCMAKE_INSTALL_PREFIX=/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_application

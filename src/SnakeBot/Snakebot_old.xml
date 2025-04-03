@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Snakebot">
+  <mujoco>
+    <compiler meshdir="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/" balanceinertia="true" discardvisual="false"/>
+  </mujoco>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00107092556862238 -0.00862746451402534 0.00315061832314444"
+        rpy="0 0 0" />
+      <mass
+        value="0.100445715067213" />
+      <inertia
+        ixx="5.73033705373319E-05"
+        ixy="-3.37294358157312E-07"
+        ixz="-3.25967080391013E-07"
+        iyy="0.000104951042247627"
+        iyz="1.07019961163482E-07"
+        izz="5.19542090732981E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="chintu_1">
+    <inertial>
+      <origin
+        xyz="5.23675686217584E-08 0.0059135473752259 0.000283844415917535"
+        rpy="0 0 0" />
+      <mass
+        value="0.00371392628877724" />
+      <inertia
+        ixx="1.57391719421821E-07"
+        ixy="-3.23846049230239E-21"
+        ixz="-1.44680774541699E-11"
+        iyy="2.62337766565418E-07"
+        iyz="-4.86774813715906E-13"
+        izz="1.56089731410144E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="chintu_1_joint"
+    type="continuous">
+    <origin
+      xyz="0.04 -0.017 -1.4731E-05"
+      rpy="1.5708 -1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="chintu_1" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="danda_1">
+    <inertial>
+      <origin
+        xyz="-0.0350208856146148 0.0158107026936778 0.0275138013335936"
+        rpy="0 0 0" />
+      <mass
+        value="0.0120182096555799" />
+      <inertia
+        ixx="5.77201796990375E-06"
+        ixy="-3.99992982748589E-09"
+        ixz="5.39359477548289E-06"
+        iyy="1.28905021492491E-05"
+        iyz="3.3648608956045E-09"
+        izz="1.19801764943501E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/danda_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/danda_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="danda_1_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.005 0.0125"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="chintu_1" />
+    <child
+      link="danda_1" />
+    <axis
+      xyz="0 -1 0.00018414" />
+  </joint>
+  <link
+    name="chintu_4">
+    <inertial>
+      <origin
+        xyz="8.37505967354879E-11 -2.23599087487841E-06 0.0121429553461764"
+        rpy="0 0 0" />
+      <mass
+        value="0.00295820164609019" />
+      <inertia
+        ixx="2.22521136002339E-07"
+        ixy="4.64159462618879E-19"
+        ixz="-6.00187556470301E-16"
+        iyy="1.36818359770934E-07"
+        iyz="2.42554279107446E-13"
+        izz="1.35501124662558E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="chintu_4_joint"
+    type="continuous">
+    <origin
+      xyz="-0.07 1.0128E-05 0.055"
+      rpy="0 0 3.1416" />
+    <parent
+      link="danda_1" />
+    <child
+      link="chintu_4" />
+    <axis
+      xyz="0 -1 -0.00018414" />
+  </joint>
+  <link
+    name="chintu_2">
+    <inertial>
+      <origin
+        xyz="-6.5746E-08 0.005 0.00035704"
+        rpy="0 0 0" />
+      <mass
+        value="0.0029582" />
+      <inertia
+        ixx="1.3682E-07"
+        ixy="-3.2768E-21"
+        ixz="2.4255E-13"
+        iyy="2.2252E-07"
+        iyz="-5.6436E-21"
+        izz="1.355E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.62745 0.62745 0.62745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="chintu_2_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.017 -0.04"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="chintu_2" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="danda_2">
+    <inertial>
+      <origin
+        xyz="-0.0350208855791601 0.0158005686439833 0.0275196223017657"
+        rpy="0 0 0" />
+      <mass
+        value="0.0120182093602401" />
+      <inertia
+        ixx="5.77201812789799E-06"
+        ixy="-5.98620449689553E-09"
+        ixz="5.39359292316247E-06"
+        iyy="1.2890499299465E-05"
+        iyz="3.70010752345892E-09"
+        izz="1.19801788446549E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/danda_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/danda_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="danda_2_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.005 0.0125"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="chintu_2" />
+    <child
+      link="danda_2" />
+    <axis
+      xyz="0 -1 -0.00018414" />
+  </joint>
+  <link
+    name="chintu_5">
+    <inertial>
+      <origin
+        xyz="-4.7958E-13 2.236E-06 0.012143"
+        rpy="0 0 0" />
+      <mass
+        value="0.0029582" />
+      <inertia
+        ixx="2.2252E-07"
+        ixy="-2.7596E-21"
+        ixz="3.4431E-18"
+        iyy="1.3682E-07"
+        iyz="-2.4255E-13"
+        izz="1.355E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.62745 0.62745 0.62745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="chintu_5_joint"
+    type="continuous">
+    <origin
+      xyz="-0.07 -1.0128E-05 0.055"
+      rpy="0 0 3.1416" />
+    <parent
+      link="danda_2" />
+    <child
+      link="chintu_5" />
+    <axis
+      xyz="0 -1 0.00018414" />
+  </joint>
+  <link
+    name="top_base">
+    <inertial>
+      <origin
+        xyz="-0.003166891919264 0.0389290743243573 0.00837195250213098"
+        rpy="0 0 0" />
+      <mass
+        value="0.100445716854264" />
+      <inertia
+        ixx="5.19542504037381E-05"
+        ixy="-3.26029596183634E-07"
+        ixz="-1.16778859958556E-07"
+        iyy="5.73033720307912E-05"
+        iyz="3.37234296694074E-07"
+        izz="0.000104951002620838" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/top_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/top_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="top_base_joint"
+    type="continuous">
+    <origin
+      xyz="0.005 0 0.0125"
+      rpy="0 0.00018414 1.5708" />
+    <parent
+      link="chintu_5" />
+    <child
+      link="top_base" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="chintu_3">
+    <inertial>
+      <origin
+        xyz="4.16333634234434E-17 0.0049999999999998 0.000357044447957099"
+        rpy="0 0 0" />
+      <mass
+        value="0.00295820164609019" />
+      <inertia
+        ixx="1.36818359815598E-07"
+        ixy="-2.99770253989217E-21"
+        ixz="-8.36493623801704E-23"
+        iyy="2.22521136002339E-07"
+        iyz="5.65453391773075E-21"
+        izz="1.35501124617894E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="chintu_3_joint"
+    type="continuous">
+    <origin
+      xyz="-0.035355 -0.017 0.035355"
+      rpy="-1.5708 0.7854 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="chintu_3" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="support_danda">
+    <inertial>
+      <origin
+        xyz="-0.0450011254969067 0.0218276331366944 0.0274998502259869"
+        rpy="0 0 0" />
+      <mass
+        value="0.0144478154829601" />
+      <inertia
+        ixx="8.19207289456561E-06"
+        ixy="-1.49315416285421E-10"
+        ixz="7.79415057653293E-06"
+        iyy="2.18240706940892E-05"
+        iyz="5.24904614127357E-11"
+        izz="2.26789349666652E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/support_danda.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/support_danda.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="support_danda_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.005 0.0125"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="chintu_3" />
+    <child
+      link="support_danda" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="chintu_6">
+    <inertial>
+      <origin
+        xyz="-1.18442616825476E-10 -3.77933795370211E-13 0.0121429555517678"
+        rpy="0 0 0" />
+      <mass
+        value="0.0029582016460902" />
+      <inertia
+        ixx="2.2252113600234E-07"
+        ixy="1.35391599173699E-18"
+        ixz="8.48800762441952E-16"
+        iyy="1.36818359815599E-07"
+        iyz="3.63145537813412E-20"
+        izz="1.35501124617894E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/chintu_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="chintu_6_joint"
+    type="continuous">
+    <origin
+      xyz="-0.09 0 0.055"
+      rpy="0 0 3.1416" />
+    <parent
+      link="support_danda" />
+    <child
+      link="chintu_6" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+</robot>

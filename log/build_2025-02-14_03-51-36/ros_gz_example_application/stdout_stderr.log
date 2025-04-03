@@ -1,0 +1,8 @@
+-- Found ament_cmake: 2.5.2 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Found rclpy: 7.1.2 (/opt/ros/jazzy/share/rclpy/cmake)
+[31mCMake Error at CMakeLists.txt:9 (install):
+  install PROGRAMS given directory "src" to install.
+
+[0m
+-- Configuring incomplete, errors occurred!
+gmake: *** [Makefile:226: cmake_check_build_system] Error 1

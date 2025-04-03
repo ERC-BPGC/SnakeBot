@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<robot name="snake_robot"
+  xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- *************************************************************** -->
+  <!-- Material Definitions -->
+  <!-- *************************************************************** -->
+  <!-- Blue material definition for robot visualization -->
+  <material name="blue">
+    <color rgba="0 0 0.8 1" />
+  </material>
+
+  <!-- Red material definition for robot visualization -->
+  <material name="red">
+    <color rgba="1 1 0.8 1" />
+  </material>
+
+  <!-- *************************************************************** -->
+  <!-- Base Link Definition -->
+  <!-- *************************************************************** -->
+  <!-- Defines the base link of the robot with visual, collision, and inertial properties -->
+  <link name="base_footprint"> </link>
+<joint name="body link joint" type="fixed">
+<parent link="base_footprint"/>
+<child link="base_link"/>
+</joint>
+  <link name="base_link">
+    <visual>
+      <origin rpy="3.14159 0 0" xyz="0 0.528 0" />
+      <geometry>
+        <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl" scale="0.010 0.010 0.010" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl" scale="0.010 0.010 0.010" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0525" />
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1" />
+    </inertial>
+  </link>
+
+ <link name="servo1">
+    <visual>
+      <origin rpy=" 0 0" xyz="0 0.528 0" />
+      <geometry>
+        <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/motor.stl" scale="0.010 0.010 0.010" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/motor.stl" scale="0.010 0.010 0.010" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0525" />
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1" />
+    </inertial>
+  </link>  
+<joint name="servo_joint" type="fixed">
+      <parent link="base_link" />
+      <child link="servo1" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+    </joint>  <!-- *************************************************************** -->
+  <!-- Macros Definitions -->
+  <!-- *************************************************************** -->
+  <!-- Macro for cross link definition -->
+  <xacro:macro name="cross" params="no">
+    <link name="cross${no}">
+      <visual>
+        <origin rpy="0 0 0" xyz="0.065 -0.558 0.065" />
+        <geometry>
+          <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl" scale="0.010 0.010 0.010" />
+        </geometry>
+        <material name="blue" />
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl" scale="0.010 0.010 0.010" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.005" />
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1" />
+      </inertial>
+    </link>
+  </xacro:macro>
+
+  <!-- Macro for vertical segment link definition -->
+  <xacro:macro name="segment_vertical" params="no">
+    <link name="segment${no}a">
+      <visual>
+        <origin rpy="0 0 3.14159" xyz="0.0 0 0" />
+        <geometry>
+          <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl" scale="0.010 0.010 0.010" />
+        </geometry>
+        <material name="blue" />
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl" scale="0.010 0.010 0.010" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.0525" />
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1" />
+      </inertial>
+    </link>
+  </xacro:macro>
+
+  <!-- Macro for horizontal segment link definition -->
+  <xacro:macro name="segment_horizontal" params="no">
+    <link name="segment${no}b">
+      <visual>
+        <origin rpy="0 1.5708 0" xyz="0.0 -0.558 0" />
+        <geometry>
+          <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl" scale="0.010 0.010 0.010" />
+        </geometry>
+        <material name="red" />
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl" scale="0.010 0.010 0.010" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.0525" />
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1" />
+      </inertial>
+    </link>
+  </xacro:macro>
+
+  <!-- Macro for horizontal joint definition -->
+  <xacro:macro name="joint_horizontal" params="no">
+    <joint name="joint${2 * no - 1}" type="revolute">
+      <parent link="cross${no}" />
+      <child link="segment${no}b" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <axis xyz="0 0 1" />
+      <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+    </joint>
+  </xacro:macro>
+
+  <!-- Macro for vertical joint definition -->
+  <xacro:macro name="joint_vertical" params="no">
+    <joint name="joint${2 * no}" type="revolute">
+      <parent link="segment${no}a" />
+      <child link="cross${no}" />
+      <origin rpy="0 0 0" xyz="0 -0.522 0" />
+      <axis xyz="1 0 0" />
+      <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+    </joint>
+  </xacro:macro>
+
+  <!-- Macro for fixed joint definition between segments -->
+  <xacro:macro name="joint_fixed" params="no">
+    <joint name="joint_fix_mod_${no}" type="fixed">
+      <parent link="segment${no -1}b" />
+      <child link="segment${no}a" />
+      <origin rpy="0 0 0" xyz="0 -0.60 0" />
+    </joint>
+  </xacro:macro>
+
+  <!-- Macro for module definition -->
+  <xacro:macro name="module" params="no">
+    <xacro:segment_vertical no="${no}"></xacro:segment_vertical>
+    <xacro:joint_fixed no="${no}"></xacro:joint_fixed>
+    <xacro:cross no="${no}"></xacro:cross>
+    <xacro:segment_horizontal no="${no}"></xacro:segment_horizontal>
+    <xacro:joint_horizontal no="${no}"></xacro:joint_horizontal>
+    <xacro:joint_vertical no="${no}"></xacro:joint_vertical>
+  </xacro:macro>
+
+  <!-- *************************************************************** -->
+  <!-- Specific Module and Joint Definitions -->
+  <!-- *************************************************************** -->
+  <!-- Define the cross link for module 1 -->
+  <link name="cross1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.065 -0.558 0.065" />
+      <geometry>
+        <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl" scale="0.010 0.010 0.010" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/cross.stl" scale="0.010 0.010 0.010" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.005" />
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1" />
+    </inertial>
+  </link>
+
+  <!-- Define the first horizontal segment link -->
+  <link name="segment1">
+    <visual>
+      <origin rpy="0 1.5708 0" xyz="0.0 -0.53 0" />
+      <geometry>
+        <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl" scale="0.010 0.010 0.010" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file:///home/harikrishnan/ROS_PROJECTS/snake_bot_ws/src/snake_bot/meshes/module.stl" scale="0.010 0.010 0.010" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0525" />
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1" />
+    </inertial>
+  </link>
+
+  <!-- Define the joint between base and first cross link -->
+  <joint name="joint2" type="revolute">
+    <parent link="base_link" />
+    <child link="cross1" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+  <!-- Define the joint between first cross link and first segment -->
+  <joint name="joint1" type="revolute">
+    <parent link="cross1" />
+    <child link="segment1" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit effort="100" lower="-1.57" upper="1.57" velocity="1" />
+  </joint>
+
+  <!-- Define additional modules using macros -->
+  <xacro:segment_vertical no="2"></xacro:segment_vertical>
+
+  <joint name="joint_fix_mod_2" type="fixed">
+    <parent link="segment1" />
+    <child link="segment2a" />
+    <origin rpy="0 0 0" xyz="0 -0.60 0" />
+  </joint>
+
+  <xacro:cross no="2"></xacro:cross>
+  <xacro:segment_horizontal no="2"></xacro:segment_horizontal>
+  <xacro:joint_horizontal no="2"></xacro:joint_horizontal>
+  <xacro:joint_vertical no="2"></xacro:joint_vertical>
+
+  <!-- Additional modules created dynamically -->
+  <xacro:module no="3"></xacro:module>
+  <xacro:module no="4"></xacro:module>
+  <xacro:module no="5"></xacro:module>
+  <xacro:module no="6"></xacro:module>
+<xacro:include filename="$(find ros_gz_example_description)/models/snakebot/robot.gazebo" /> |
+</robot>

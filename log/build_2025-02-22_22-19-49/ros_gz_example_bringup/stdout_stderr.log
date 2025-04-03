@@ -1,0 +1,28 @@
+-- Found ament_cmake: 2.5.2 (/opt/ros/jazzy/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found ros_gz_example_description: 0.0.0 (/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/cmake)
+-- Found ros_gz_example_gazebo: 0.0.0 (/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_gazebo/share/ros_gz_example_gazebo/cmake)
+-- Found ament_lint_auto: 0.17.1 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_bringup
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/launch/edit-snakebot.launch.py
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/launch/snakebot.launch copy.py
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/config/ros_gz_snakebot_bridge.yaml
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ament_index/resource_index/package_run_dependencies/ros_gz_example_bringup
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ament_index/resource_index/parent_prefix_path/ros_gz_example_bringup
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/environment/ament_prefix_path.sh
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/environment/ament_prefix_path.dsv
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/environment/path.sh
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/environment/path.dsv
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/local_setup.bash
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/local_setup.sh
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/local_setup.zsh
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/local_setup.dsv
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/package.dsv
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ament_index/resource_index/packages/ros_gz_example_bringup
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/cmake/ros_gz_example_bringupConfig.cmake
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/cmake/ros_gz_example_bringupConfig-version.cmake
+-- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_bringup/share/ros_gz_example_bringup/package.xml

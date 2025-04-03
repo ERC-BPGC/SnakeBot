@@ -1,0 +1,36 @@
+[0.023s] Invoking command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description -- -j12 -l12
+[0.080s] -- Found ament_cmake: 2.5.3 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.468s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.493s] -- Found ament_lint_auto: 0.17.1 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[0.646s] -- Configuring done (0.6s)
+[0.651s] -- Generating done (0.0s)
+[0.652s] -- Build files have been written to: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description
+[0.688s] Invoked command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description -- -j12 -l12
+[0.690s] Invoking command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description
+[0.707s] -- Install configuration: ""
+[0.708s] -- Execute custom install script
+[0.709s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/frictional_world.sdf
+[0.734s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/cross.stl
+[0.752s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/module.stl
+[0.766s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/motor.stl
+[0.779s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/rod.stl
+[0.796s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/rodsupport.stl
+[0.810s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/rotary.stl
+[0.830s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/snake_base.stl
+[0.848s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/meshes/snake_robot_V2.xacro
+[0.863s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/robot.gazebo
+[0.877s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot.xacro
+[0.898s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_V2.xacro
+[0.923s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_scaleddown copy.xacro
+[0.944s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_scaleddown.xacro
+[0.964s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_wokrbale copy.xacro
+[0.985s] -- Symlinking: /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/install/ros_gz_example_description/share/ros_gz_example_description/mojoco/snakebot/snake_robot_wokrbale.urdf
+[1.007s] [31mCMake Error at ament_cmake_symlink_install/ament_cmake_symlink_install.cmake:100 (message):
+[1.007s]   ament_cmake_symlink_install_directory() can't find
+[1.007s]   '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/ros_gz_example_description/mojoco/'
+[1.008s] Call Stack (most recent call first):
+[1.008s]   ament_cmake_symlink_install/ament_cmake_symlink_install.cmake:314 (ament_cmake_symlink_install_directory)
+[1.008s]   cmake_install.cmake:46 (include)
+[1.008s] 
+[1.009s] [0m
+[1.010s] Invoked command in '/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_teleop:/home/harikrishnan/turtlebot3_ws/install/turtlebot3_example DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/build/ros_gz_example_description
