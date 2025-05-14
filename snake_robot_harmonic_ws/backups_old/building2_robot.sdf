@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="snake_robot">
+    <!-- Base Link -->
+    <link name="base_link">
+      <pose>0 0 0.025 0 0 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.0001</ixx>
+          <iyy>0.0001</iyy>
+          <izz>0.0001</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.5</mu>
+              <mu2>0.5</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>1000000.0</kp>
+              <kd>100.0</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.8 1</ambient>
+          <diffuse>0.2 0.2 0.8 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Module 1 (showing just first module for brevity - repeat pattern for others) -->
+    <link name="module_1">
+      <pose>0.05 0 0.025 0 0 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.0001</ixx>
+          <iyy>0.0001</iyy>
+          <izz>0.0001</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.5</mu>
+              <mu2>0.5</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>1000000.0</kp>
+              <kd>100.0</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.8 1</ambient>
+          <diffuse>0.2 0.2 0.8 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="joint_1" type="revolute">
+      <parent>base_link</parent>
+      <child>module_1</child>
+      <pose>0.025 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>  <!-- Changed to Y-axis for lateral movement -->
+        <limit>
+          <lower>-0.7</lower>  <!-- Reduced joint limits -->
+          <upper>0.7</upper>
+          <effort>10</effort>  <!-- Increased effort limit -->
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <damping>1.0</damping>  <!-- Increased damping -->
+          <friction>0.5</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.5</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <cfm>0.001</cfm>
+          <bounce>0.0</bounce>
+          <max_force>1000.0</max_force>
+        </ode>
+      </physics>
+    </joint>
+
+    <!-- [Rest of modules follow same pattern...] -->
+
+    <plugin name="snake_controller" filename="libsnake_controller.so">
+      <frequency>0.5</frequency>  <!-- Reduced frequency -->
+      <amplitude>0.3</amplitude>  <!-- Reduced amplitude -->
+      <phase_offset>1.57</phase_offset>
+      <joints>
+        <joint>joint_1</joint>
+        <joint>joint_2</joint>
+        <joint>joint_3</joint>
+        <joint>joint_4</joint>
+        <joint>joint_5</joint>
+        <joint>joint_6</joint>
+      </joints>
+    </plugin>
+  </model>
+</sdf>

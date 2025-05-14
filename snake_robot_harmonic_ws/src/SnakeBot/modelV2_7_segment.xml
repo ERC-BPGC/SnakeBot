@@ -1,0 +1,718 @@
+<mujoco model="Snakebot">
+	<compiler angle="radian" meshdir="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/" />
+	<option gravity="0 0 -9.81" />
+	<asset>
+		<material name="mat_red" rgba="1 0 0 1" />
+		<material name="mat_green" rgba="0 1 0 1" />
+		<material name="mat_blue" rgba="0 0 1 1" />
+		<material name="mat_yellow" rgba="1 1 0 1" />
+		<material name="mat_magenta" rgba="1 0 1 1" />
+		<material name="mat_cyan" rgba="0 1 1 1" />
+		<material name="mat_gray" rgba="0.5 0.5 0.5 1" />
+		<material name="mat_orange" rgba="1 0.5 0 1" />
+		<material name="mat_purple" rgba="0.5 0 0.5 1" />
+		<material name="mat_brown" rgba="0.4 0.2 0.1 1" />
+		<material name="mat_lgreen" rgba="0.3 0.7 0.4 1" />
+		<mesh name="base_link" file="meshes/base_link.STL" />
+		<mesh name="rotary_connector_1" file="meshes/rotary_connector_1.STL" />
+		<mesh name="rod_1" file="meshes/rod_1.STL" />
+		<mesh name="rotary_connector_4" file="meshes/rotary_connector_4.STL" />
+		<mesh name="rotary_connector_2" file="meshes/rotary_connector_2.STL" />
+		<mesh name="rod_2" file="meshes/rod_2.STL" />
+		<mesh name="rotary_connector_5" file="meshes/rotary_connector_5.STL" />
+		<mesh name="top_base" file="meshes/top_base.STL" />
+		<mesh name="rotary_connector_3" file="meshes/rotary_connector_3.STL" />
+		<mesh name="support_rod" file="meshes/support_rod.STL" />
+		<mesh name="rotary_connector_6" file="meshes/rotary_connector_6.STL" />
+	</asset>
+
+	<worldbody>
+		<!-- Module 1 start -->
+		<body name="base_link" pos="0 0 0.1">
+			<inertial pos="0 0 0" mass="0.1" diaginertia="0.1 0.1 0.1" />
+			<joint type="free" />
+			<!-- Visual mesh only (no collision) -->
+			<geom type="mesh" contype="1" conaffinity="1" group="1" density="0" material="mat_red" mesh="base_link" />
+			<!-- Simplified collision geometry - capsule approximation -->
+			<geom type="capsule" size="0.04 0.02" pos="0 0 0" rgba="0.752941 0.752941 0.752941 0" contype="0" conaffinity="0" />
+
+			<body name="rotary_connector_1" pos="0.04 -0.017 -1.4731e-05" quat="0.499998 0.5 -0.5 0.500002">
+				<inertial pos="5.23676e-08 0.00591355 0.000283844" quat="0.707096 0.00392812 0.00392812 0.707096" mass="0.00371393" diaginertia="2.62338e-07 1.57392e-07 1.5609e-07" />
+				<joint name="rotary_connector_1_joint" pos="0 0 0" axis="0 -1 0" />
+				<!-- Visual mesh only (no collision) -->
+				<geom type="mesh" contype="0" conaffinity="0" group="1" material="mat_green" mesh="rotary_connector_1" />
+				<!-- No collision geometry for this part -->
+				<body name="rod_1" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+					<inertial pos="-0.0350209 0.0158107 0.0275138" quat="-0.000114745 0.866198 0.000304169 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06" />
+					<joint name="rod_1_joint" pos="0 0 0" axis="0 -1 0.00018414" />
+					<!-- Visual mesh only (no collision) -->
+					<geom type="mesh" contype="0" conaffinity="0" group="1" mesh="rod_1" material="mat_red" />
+
+					<!-- Simplified collision geometry - capsule approximation  to avoid collision
+					between rods -->
+					<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" rgba="0.752941 0.752941 0.752941 0" quat="0.707 0 0.707 0" contype="0" conaffinity="0" />
+
+					<body name="rotary_connector_4" pos="-0.07 1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+						<site name="site_rotary_connector_4" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="1 0 0 1" />
+						<inertial pos="8.37506e-11 -2.23599e-06 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+						<joint name="rotary_connector_4_joint" pos="0 0 0" axis="0 -1 -0.00018414" />
+						<!-- Visual mesh only (no collision) -->
+						<geom type="mesh" contype="0" conaffinity="0" group="1" material="mat_red" mesh="rotary_connector_4" />
+						<!-- No collision geometry for this part -->
+					</body>
+				</body>
+			</body>
+			<!-- End of  a chain  -->
+
+
+			<body name="rotary_connector_2" pos="0 -0.017 -0.04" quat="0.707105 0.707108 0 0">
+				<inertial pos="-6.5746e-08 0.005 0.00035704" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07" />
+				<joint name="rotary_connector_2_joint" pos="0 0 0" axis="0 -1 0" />
+				<!-- Visual mesh only (no collision) -->
+				<geom type="mesh" contype="0" conaffinity="0" group="1" material="mat_blue" mesh="rotary_connector_2" />
+				<!-- No collision geometry for this part -->
+				<body name="rod_2" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+					<inertial pos="-0.0350209 0.0158006 0.0275196" quat="-0.00027424 0.866198 0.000212159 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06" />
+					<joint name="rod_2_joint" pos="0 0 0" axis="0 -1 -0.00018414" />
+					<!-- Visual mesh only (no collision) -->
+					<geom type="mesh" contype="0" conaffinity="0" group="1" material="mat_green" mesh="rod_2" />
+					<!-- Simplified collision geometry - capsule approximation -->
+					<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+					<body name="rotary_connector_5" pos="-0.07 -1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+						<inertial pos="0 2.236e-06 0.012143" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07" />
+						<joint name="rotary_connector_5_joint" pos="0 0 0" axis="0 -1 0.00018414" />
+						<!-- Visual mesh only (no collision) -->
+						<geom type="mesh" contype="0" conaffinity="0" group="1" material="mat_yellow" mesh="rotary_connector_5" />
+						<!-- No collision geometry for this part -->
+						<body name="top_base" pos="-0.035 0.04 0.0125" quat="0 0 0 1">
+							<inertial pos="-0.00316689 0.0389291 0.00837195" quat="-0.0188662 0.70606 0.0239272 0.707496" mass="0.1" diaginertia="0.000104954 5.73207e-05 5.19343e-05" />
+							<site name="site_1_top_base" type="sphere" size="0.0015" pos="0.0 0.005 0.0" rgba="1 0 0 1" />
+							<site name="site_2_top_base" type="sphere" size="0.0025" pos="0.0315 0.0725 0.0" rgba="0 1 0 1" />
+							<site name="site_3_top_base" type="sphere" size="0.0015" pos="-0.035 0.04 0" rgba="0 1 1 1" />
+							<joint name="top_base_joint" pos="-0.035 0.04 0" axis="1 0 0" />
+							<!-- Visual mesh only (no collision) -->
+							<geom type="mesh" contype="1" conaffinity="1" group="1" material="mat_red" mesh="top_base" />
+							<!-- Simplified collision geometry - box approximation -->
+							<geom type="box" size="0.02 0.04 0.01" pos="0 0.04 0.01" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+							<!--  -->
+							<!-- SECOND MODULE -->
+							<!--  -->
+							<body name="base_link_2" pos="0 0.04 0.0175" quat="0.5 -0.5 -0.5 0.5">
+								<inertial pos="0 0 0" mass="0.1" diaginertia="0.1 0.1 0.1" />
+								<!-- Visual mesh only (no collision) -->
+								<geom type="mesh" contype="1" conaffinity="1" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="base_link" />
+								<!-- Simplified collision geometry - capsule approximation -->
+								<geom type="capsule" size="0.04 0.02" pos="0 0 0" rgba="0.752941 0.752941 0.752941 0" contype="0" conaffinity="0" />
+								<body name="rotary_connector_1_2" pos="0.04 -0.017 -1.4731e-05" quat="0.499998 0.5 -0.5 0.500002">
+									<inertial pos="5.23676e-08 0.00591355 0.000283844" quat="0.707096 0.00392812 0.00392812 0.707096" mass="0.00371393" diaginertia="2.62338e-07 1.57392e-07 1.5609e-07" />
+									<joint name="rotary_connector_1_2_joint" pos="0 0 0" axis="0 -1 0" />
+									<!-- Visual mesh only (no collision) -->
+									<geom type="mesh" contype="0" conaffinity="0" group="1" material="mat_gray" mesh="rotary_connector_1" />
+									<!-- No collision geometry for this part -->
+									<body name="rod_1_2" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+										<inertial pos="-0.0350209 0.0158107 0.0275138" quat="-0.000114745 0.866198 0.000304169 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06" />
+										<joint name="rod_1_2_joint" pos="0 0 0" axis="0 -1 0.00018414" />
+										<!-- Visual mesh only (no collision) -->
+										<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_1" />
+										<!-- Simplified collision geometry - capsule approximation -->
+										<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+										<body name="rotary_connector_4_2" pos="-0.07 1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+											<site name="site_rotary_connector_4_2" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="1 0 0 1" />
+											<inertial pos="8.37506e-11 -2.23599e-06 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+											<joint name="rotary_connector_4_2_joint" pos="0 0 0" axis="0 -1 -0.00018414" />
+											<!-- Visual mesh only (no collision) -->
+											<geom type="mesh" contype="0" conaffinity="0" group="1" material="mat_purple" mesh="rotary_connector_4" />
+											<!-- No collision geometry for this part -->
+										</body>
+									</body>
+								</body>
+								<body name="rotary_connector_2_2" pos="0 -0.017 -0.04" quat="0.707105 0.707108 0 0">
+									<inertial pos="-6.5746e-08 0.005 0.00035704" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07" />
+									<joint name="rotary_connector_2_2_joint" pos="0 0 0" axis="0 -1 0" />
+									<!-- Visual mesh only (no collision) -->
+									<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_2" />
+									<!-- No collision geometry for this part -->
+									<body name="rod_2_2" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+										<inertial pos="-0.0350209 0.0158006 0.0275196" quat="-0.00027424 0.866198 0.000212159 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06" />
+										<joint name="rod_2_2_joint" pos="0 0 0" axis="0 -1 -0.00018414" />
+										<!-- Visual mesh only (no collision) -->
+										<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_2" />
+										<!-- Simplified collision geometry - capsule approximation -->
+										<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+										<body name="rotary_connector_5_2" pos="-0.07 -1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+											<inertial pos="0 2.236e-06 0.012143" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07" />
+											<joint name="rotary_connector_5_2_joint" pos="0 0 0" axis="0 -1 0.00018414" />
+											<!-- Visual mesh only (no collision) -->
+											<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_5" />
+											<!-- No collision geometry for this part -->
+											<body name="top_base_2" pos="-0.035 0.04 0.0125" quat="0 0 0 1">
+												<inertial pos="-0.00316689 0.0389291 0.00837195" quat="-0.0188662 0.70606 0.0239272 0.707496" mass="0.100446" diaginertia="0.000104954 5.73207e-05 5.19343e-05" />
+												<site name="site_1_top_base_2" type="sphere" size="0.0015" pos="0.0 0.005 0.0" rgba="1 0 0 1" />
+												<site name="site_2_top_base_2" type="sphere" size="0.0025" pos="0.0315 0.0725 0.0" rgba="0 1 0 1" />
+												<site name="site_3_top_base_2" type="sphere" size="0.0015" pos="-0.035 0.04 0" rgba="0 1 1 1" />
+												<joint name="top_base_2_joint" pos="-0.035 0.04 0" axis="1 0 0" />
+												<!-- Visual mesh only (no collision) -->
+												<geom type="mesh" contype="1" conaffinity="1" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="top_base" />
+												<!-- Simplified collision geometry - box
+												approximation -->
+												<geom type="box" size="0.02 0.04 0.01" pos="0 0.04 0.01" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+												<body name="base_link_3" pos="0 0.04 0.0175" quat="0.5 -0.5 -0.5 0.5">
+													<inertial pos="0 0 0" mass="0.1" diaginertia="0.1 0.1 0.1" />
+													<!-- Visual mesh only (no collision) -->
+													<geom type="mesh" contype="1" conaffinity="1" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="base_link" />
+													<!-- Simplified collision geometry - capsule
+													approximation -->
+													<geom type="capsule" size="0.04 0.02" pos="0 0 0" rgba="0.752941 0.752941 0.752941 0" contype="0" conaffinity="0" />
+													<body name="rotary_connector_1_3" pos="0.04 -0.017 -1.4731e-05" quat="0.499998 0.5 -0.5 0.500002">
+														<inertial pos="5.23676e-08 0.00591355 0.000283844" quat="0.707096 0.00392812 0.00392812 0.707096" mass="0.00371393" diaginertia="2.62338e-07 1.57392e-07 1.5609e-07" />
+														<joint name="rotary_connector_1_3_joint" pos="0 0 0" axis="0 -1 0" />
+														<!-- Visual mesh only (no collision) -->
+														<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_1" />
+														<!-- No collision geometry for this part -->
+														<body name="rod_1_3" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+															<inertial pos="-0.0350209 0.0158107 0.0275138" quat="-0.000114745 0.866198 0.000304169 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06" />
+															<joint name="rod_1_3_joint" pos="0 0 0" axis="0 -1 0.00018414" />
+															<!-- Visual mesh only (no collision) -->
+															<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_1" />
+															<!-- Simplified collision geometry -
+															capsule approximation -->
+															<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+															<body name="rotary_connector_4_3" pos="-0.07 1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																<site name="site_rotary_connector_4_3" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="1 0 0 1" />
+																<inertial pos="8.37506e-11 -2.23599e-06 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+																<joint name="rotary_connector_4_3_joint" pos="0 0 0" axis="0 -1 -0.00018414" />
+																<!-- Visual mesh only (no collision) -->
+																<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_4" />
+																<!-- No collision geometry for this
+																part -->
+															</body>
+														</body>
+													</body>
+													<body name="rotary_connector_2_3" pos="0 -0.017 -0.04" quat="0.707105 0.707108 0 0">
+														<inertial pos="-6.5746e-08 0.005 0.00035704" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07" />
+														<joint name="rotary_connector_2_3_joint" pos="0 0 0" axis="0 -1 0" />
+														<!-- Visual mesh only (no collision) -->
+														<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_2" />
+														<!-- No collision geometry for this part -->
+														<body name="rod_2_3" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+															<inertial pos="-0.0350209 0.0158006 0.0275196" quat="-0.00027424 0.866198 0.000212159 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06" />
+															<joint name="rod_2_3_joint" pos="0 0 0" axis="0 -1 -0.00018414" />
+															<!-- Visual mesh only (no collision) -->
+															<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_2" />
+															<!-- Simplified collision geometry -
+															capsule approximation -->
+															<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+															<body name="rotary_connector_5_3" pos="-0.07 -1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																<inertial pos="0 2.236e-06 0.012143" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07" />
+																<joint name="rotary_connector_5_3_joint" pos="0 0 0" axis="0 -1 0.00018414" />
+																<!-- Visual mesh only (no collision) -->
+																<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_5" />
+																<!-- No collision geometry for this
+																part -->
+																<body name="top_base_3" pos="-0.035 0.04 0.0125" quat="0 0 0 1">
+																	<inertial pos="-0.00316689 0.0389291 0.00837195" quat="-0.0188662 0.70606 0.0239272 0.707496" mass="0.100446" diaginertia="0.000104954 5.73207e-05 5.19343e-05" />
+																	<site name="site_1_top_base_3" type="sphere" size="0.0015" pos="0.0 0.005 0.0" rgba="1 0 0 1" />
+																	<site name="site_2_top_base_3" type="sphere" size="0.0025" pos="0.0315 0.0725 0.0" rgba="0 1 0 1" />
+																	<site name="site_3_top_base_3" type="sphere" size="0.0015" pos="-0.035 0.04 0" rgba="0 1 1 1" />
+																	<joint name="top_base_3_joint" pos="-0.035 0.04 0" axis="1 0 0" />
+																	<!-- Visual mesh only (no
+																	collision) -->
+																	<geom type="mesh" contype="1" conaffinity="1" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="top_base" />
+																	<!-- Simplified collision
+																	geometry - box approximation -->
+																	<geom type="box" size="0.02 0.04 0.01" pos="0 0.04 0.01" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+																	<body name="base_link_4" pos="0 0.04 0.0175" quat="0.5 -0.5 -0.5 0.5">
+																		<inertial pos="0 0 0" mass="0.1" diaginertia="0.1 0.1 0.1"/>
+																		<!-- Visual mesh only (no collision) -->
+																		<geom type="mesh" contype="1" conaffinity="1" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="base_link"/>
+																		<!-- Simplified collision geometry - capsule approximation -->
+																		<geom type="capsule" size="0.04 0.02" pos="0 0 0" rgba="0.752941 0.752941 0.752941 0" contype="0" conaffinity="0"/>
+																		<body name="rotary_connector_1_4" pos="0.04 -0.017 -1.4731e-05" quat="0.499998 0.5 -0.5 0.500002">
+																			<inertial pos="5.23676e-08 0.00591355 0.000283844" quat="0.707096 0.00392812 0.00392812 0.707096" mass="0.00371393" diaginertia="2.62338e-07 1.57392e-07 1.5609e-07"/>
+																			<joint name="rotary_connector_1_4_joint" pos="0 0 0" axis="0 -1 0"/>
+																			<!-- Visual mesh only (no collision) -->
+																			<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_1"/>
+																			<!-- No collision geometry for this part -->
+																			<body name="rod_1_4" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																				<inertial pos="-0.0350209 0.0158107 0.0275138" quat="-0.000114745 0.866198 0.000304169 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06"/>
+																				<joint name="rod_1_4_joint" pos="0 0 0" axis="0 -1 0.00018414"/>
+																				<!-- Visual mesh only (no collision) -->
+																				<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_1"/>
+																				<!-- Simplified collision geometry - capsule approximation -->
+																				<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																				<body name="rotary_connector_4_4" pos="-0.07 1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																					<site name="site_rotary_connector_4_4" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="1 0 0 1"/>
+																					<inertial pos="8.37506e-11 -2.23599e-06 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																					<joint name="rotary_connector_4_4_joint" pos="0 0 0" axis="0 -1 -0.00018414"/>
+																					<!-- Visual mesh only (no collision) -->
+																					<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_4"/>
+																					<!-- No collision geometry for this part -->
+																				</body>
+																			</body>
+																		</body>
+																		<body name="rotary_connector_2_4" pos="0 -0.017 -0.04" quat="0.707105 0.707108 0 0">
+																			<inertial pos="-6.5746e-08 0.005 0.00035704" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07"/>
+																			<joint name="rotary_connector_2_4_joint" pos="0 0 0" axis="0 -1 0"/>
+																			<!-- Visual mesh only (no collision) -->
+																			<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_2"/>
+																			<!-- No collision geometry for this part -->
+																			<body name="rod_2_4" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																				<inertial pos="-0.0350209 0.0158006 0.0275196" quat="-0.00027424 0.866198 0.000212159 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06"/>
+																				<joint name="rod_2_4_joint" pos="0 0 0" axis="0 -1 -0.00018414"/>
+																				<!-- Visual mesh only (no collision) -->
+																				<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_2"/>
+																				<!-- Simplified collision geometry - capsule approximation -->
+																				<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																				<body name="rotary_connector_5_4" pos="-0.07 -1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																					<inertial pos="0 2.236e-06 0.012143" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07"/>
+																					<joint name="rotary_connector_5_4_joint" pos="0 0 0" axis="0 -1 0.00018414"/>
+																					<!-- Visual mesh only (no collision) -->
+																					<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_5"/>
+																					<!-- No collision geometry for this part -->
+																					<body name="top_base_4" pos="-0.035 0.04 0.0125" quat="0 0 0 1">
+																						<inertial pos="-0.00316689 0.0389291 0.00837195" quat="-0.0188662 0.70606 0.0239272 0.707496" mass="0.100446" diaginertia="0.000104954 5.73207e-05 5.19343e-05"/>
+																						<site name="site_1_top_base_4" type="sphere" size="0.0015" pos="0.0 0.005 0.0" rgba="1 0 0 1"/>
+																						<site name="site_2_top_base_4" type="sphere" size="0.0025" pos="0.0315 0.0725 0.0" rgba="0 1 0 1"/>
+																						<site name="site_3_top_base_4" type="sphere" size="0.0015" pos="-0.035 0.04 0" rgba="0 1 1 1"/>
+																						<joint name="top_base_4_joint" pos="-0.035 0.04 0" axis="1 0 0"/>
+																						<!-- Visual mesh only (no collision) -->
+																						<geom type="mesh" contype="1" conaffinity="1" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="top_base"/>
+																						<!-- Simplified collision geometry - box approximation -->
+																						<geom type="box" size="0.02 0.04 0.01" pos="0 0.04 0.01" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																						<body name="base_link_5" pos="0 0.04 0.0175" quat="0.5 -0.5 -0.5 0.5">
+																							<inertial pos="0 0 0" mass="0.1" diaginertia="0.1 0.1 0.1"/>
+																							<!-- Visual mesh only (no collision) -->
+																							<geom type="mesh" contype="1" conaffinity="1" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="base_link"/>
+																							<!-- Simplified collision geometry - capsule approximation -->
+																							<geom type="capsule" size="0.04 0.02" pos="0 0 0" rgba="0.752941 0.752941 0.752941 0" contype="0" conaffinity="0"/>
+																							<body name="rotary_connector_1_5" pos="0.04 -0.017 -1.4731e-05" quat="0.499998 0.5 -0.5 0.500002">
+																								<inertial pos="5.23676e-08 0.00591355 0.000283844" quat="0.707096 0.00392812 0.00392812 0.707096" mass="0.00371393" diaginertia="2.62338e-07 1.57392e-07 1.5609e-07"/>
+																								<joint name="rotary_connector_1_5_joint" pos="0 0 0" axis="0 -1 0"/>
+																								<!-- Visual mesh only (no collision) -->
+																								<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_1"/>
+																								<!-- No collision geometry for this part -->
+																								<body name="rod_1_5" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																									<inertial pos="-0.0350209 0.0158107 0.0275138" quat="-0.000114745 0.866198 0.000304169 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06"/>
+																									<joint name="rod_1_5_joint" pos="0 0 0" axis="0 -1 0.00018414"/>
+																									<!-- Visual mesh only (no collision) -->
+																									<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_1"/>
+																									<!-- Simplified collision geometry - capsule approximation -->
+																									<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																									<body name="rotary_connector_4_5" pos="-0.07 1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																										<site name="site_rotary_connector_4_5" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="1 0 0 1"/>
+																										<inertial pos="8.37506e-11 -2.23599e-06 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																										<joint name="rotary_connector_4_5_joint" pos="0 0 0" axis="0 -1 -0.00018414"/>
+																										<!-- Visual mesh only (no collision) -->
+																										<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_4"/>
+																										<!-- No collision geometry for this part -->
+																									</body>
+																								</body>
+																							</body>
+																							<body name="rotary_connector_2_5" pos="0 -0.017 -0.04" quat="0.707105 0.707108 0 0">
+																								<inertial pos="-6.5746e-08 0.005 0.00035704" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07"/>
+																								<joint name="rotary_connector_2_5_joint" pos="0 0 0" axis="0 -1 0"/>
+																								<!-- Visual mesh only (no collision) -->
+																								<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_2"/>
+																								<!-- No collision geometry for this part -->
+																								<body name="rod_2_5" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																									<inertial pos="-0.0350209 0.0158006 0.0275196" quat="-0.00027424 0.866198 0.000212159 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06"/>
+																									<joint name="rod_2_5_joint" pos="0 0 0" axis="0 -1 -0.00018414"/>
+																									<!-- Visual mesh only (no collision) -->
+																									<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_2"/>
+																									<!-- Simplified collision geometry - capsule approximation -->
+																									<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																									<body name="rotary_connector_5_5" pos="-0.07 -1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																										<inertial pos="0 2.236e-06 0.012143" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07"/>
+																										<joint name="rotary_connector_5_5_joint" pos="0 0 0" axis="0 -1 0.00018414"/>
+																										<!-- Visual mesh only (no collision) -->
+																										<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_5"/>
+																										<!-- No collision geometry for this part -->
+																										<body name="top_base_5" pos="-0.035 0.04 0.0125" quat="0 0 0 1">
+																											<inertial pos="-0.00316689 0.0389291 0.00837195" quat="-0.0188662 0.70606 0.0239272 0.707496" mass="0.100446" diaginertia="0.000104954 5.73207e-05 5.19343e-05"/>
+																											<site name="site_1_top_base_5" type="sphere" size="0.0015" pos="0.0 0.005 0.0" rgba="1 0 0 1"/>
+																											<site name="site_2_top_base_5" type="sphere" size="0.0025" pos="0.0315 0.0725 0.0" rgba="0 1 0 1"/>
+																											<site name="site_3_top_base_5" type="sphere" size="0.0015" pos="-0.035 0.04 0" rgba="0 1 1 1"/>
+																											<joint name="top_base_5_joint" pos="-0.035 0.04 0" axis="1 0 0"/>
+																											<!-- Visual mesh only (no collision) -->
+																											<geom type="mesh" contype="1" conaffinity="1" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="top_base"/>
+																											<!-- Simplified collision geometry - box approximation -->
+																											<geom type="box" size="0.02 0.04 0.01" pos="0 0.04 0.01" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																											<body name="base_link_6" pos="0 0.04 0.0175" quat="0.5 -0.5 -0.5 0.5">
+																												<inertial pos="0 0 0" mass="0.1" diaginertia="0.1 0.1 0.1"/>
+																												<!-- Visual mesh only (no collision) -->
+																												<geom type="mesh" contype="1" conaffinity="1" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="base_link"/>
+																												<!-- Simplified collision geometry - capsule approximation -->
+																												<geom type="capsule" size="0.04 0.02" pos="0 0 0" rgba="0.752941 0.752941 0.752941 0" contype="0" conaffinity="0"/>
+																												<body name="rotary_connector_1_6" pos="0.04 -0.017 -1.4731e-05" quat="0.499998 0.5 -0.5 0.500002">
+																													<inertial pos="5.23676e-08 0.00591355 0.000283844" quat="0.707096 0.00392812 0.00392812 0.707096" mass="0.00371393" diaginertia="2.62338e-07 1.57392e-07 1.5609e-07"/>
+																													<joint name="rotary_connector_1_6_joint" pos="0 0 0" axis="0 -1 0"/>
+																													<!-- Visual mesh only (no collision) -->
+																													<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_1"/>
+																													<!-- No collision geometry for this part -->
+																													<body name="rod_1_6" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																														<inertial pos="-0.0350209 0.0158107 0.0275138" quat="-0.000114745 0.866198 0.000304169 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06"/>
+																														<joint name="rod_1_6_joint" pos="0 0 0" axis="0 -1 0.00018414"/>
+																														<!-- Visual mesh only (no collision) -->
+																														<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_1"/>
+																														<!-- Simplified collision geometry - capsule approximation -->
+																														<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																														<body name="rotary_connector_4_6" pos="-0.07 1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																															<site name="site_rotary_connector_4_6" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="1 0 0 1"/>
+																															<inertial pos="8.37506e-11 -2.23599e-06 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																															<joint name="rotary_connector_4_6_joint" pos="0 0 0" axis="0 -1 -0.00018414"/>
+																															<!-- Visual mesh only (no collision) -->
+																															<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_4"/>
+																															<!-- No collision geometry for this part -->
+																														</body>
+																													</body>
+																												</body>
+																												<body name="rotary_connector_2_6" pos="0 -0.017 -0.04" quat="0.707105 0.707108 0 0">
+																													<inertial pos="-6.5746e-08 0.005 0.00035704" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07"/>
+																													<joint name="rotary_connector_2_6_joint" pos="0 0 0" axis="0 -1 0"/>
+																													<!-- Visual mesh only (no collision) -->
+																													<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_2"/>
+																													<!-- No collision geometry for this part -->
+																													<body name="rod_2_6" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																														<inertial pos="-0.0350209 0.0158006 0.0275196" quat="-0.00027424 0.866198 0.000212159 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06"/>
+																														<joint name="rod_2_6_joint" pos="0 0 0" axis="0 -1 -0.00018414"/>
+																														<!-- Visual mesh only (no collision) -->
+																														<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_2"/>
+																														<!-- Simplified collision geometry - capsule approximation -->
+																														<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																														<body name="rotary_connector_5_6" pos="-0.07 -1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																															<inertial pos="0 2.236e-06 0.012143" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07"/>
+																															<joint name="rotary_connector_5_6_joint" pos="0 0 0" axis="0 -1 0.00018414"/>
+																															<!-- Visual mesh only (no collision) -->
+																															<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_5"/>
+																															<!-- No collision geometry for this part -->
+																															<body name="top_base_6" pos="-0.035 0.04 0.0125" quat="0 0 0 1">
+																																<inertial pos="-0.00316689 0.0389291 0.00837195" quat="-0.0188662 0.70606 0.0239272 0.707496" mass="0.100446" diaginertia="0.000104954 5.73207e-05 5.19343e-05"/>
+																																<site name="site_1_top_base_6" type="sphere" size="0.0015" pos="0.0 0.005 0.0" rgba="1 0 0 1"/>
+																																<site name="site_2_top_base_6" type="sphere" size="0.0025" pos="0.0315 0.0725 0.0" rgba="0 1 0 1"/>
+																																<site name="site_3_top_base_6" type="sphere" size="0.0015" pos="-0.035 0.04 0" rgba="0 1 1 1"/>
+																																<joint name="top_base_6_joint" pos="-0.035 0.04 0" axis="1 0 0"/>
+																																<!-- Visual mesh only (no collision) -->
+																																<geom type="mesh" contype="1" conaffinity="1" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="top_base"/>
+																																<!-- Simplified collision geometry - box approximation -->
+																																<geom type="box" size="0.02 0.04 0.01" pos="0 0.04 0.01" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																																<body name="base_link_7" pos="0 0.04 0.0175" quat="0.5 -0.5 -0.5 0.5">
+																																	<inertial pos="0 0 0" mass="0.1" diaginertia="0.1 0.1 0.1"/>
+																																	<!-- Visual mesh only (no collision) -->
+																																	<geom type="mesh" contype="1" conaffinity="1" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="base_link"/>
+																																	<!-- Simplified collision geometry - capsule approximation -->
+																																	<geom type="capsule" size="0.04 0.02" pos="0 0 0" rgba="0.752941 0.752941 0.752941 0" contype="0" conaffinity="0"/>
+																																	<body name="rotary_connector_1_7" pos="0.04 -0.017 -1.4731e-05" quat="0.499998 0.5 -0.5 0.500002">
+																																		<inertial pos="5.23676e-08 0.00591355 0.000283844" quat="0.707096 0.00392812 0.00392812 0.707096" mass="0.00371393" diaginertia="2.62338e-07 1.57392e-07 1.5609e-07"/>
+																																		<joint name="rotary_connector_1_7_joint" pos="0 0 0" axis="0 -1 0"/>
+																																		<!-- Visual mesh only (no collision) -->
+																																		<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_1"/>
+																																		<!-- No collision geometry for this part -->
+																																		<body name="rod_1_7" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																																			<inertial pos="-0.0350209 0.0158107 0.0275138" quat="-0.000114745 0.866198 0.000304169 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06"/>
+																																			<joint name="rod_1_7_joint" pos="0 0 0" axis="0 -1 0.00018414"/>
+																																			<!-- Visual mesh only (no collision) -->
+																																			<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_1"/>
+																																			<!-- Simplified collision geometry - capsule approximation -->
+																																			<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																																			<body name="rotary_connector_4_7" pos="-0.07 1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																																				<site name="site_rotary_connector_4_7" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="1 0 0 1"/>
+																																				<inertial pos="8.37506e-11 -2.23599e-06 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																																				<joint name="rotary_connector_4_7_joint" pos="0 0 0" axis="0 -1 -0.00018414"/>
+																																				<!-- Visual mesh only (no collision) -->
+																																				<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_4"/>
+																																				<!-- No collision geometry for this part -->
+																																			</body>
+																																		</body>
+																																	</body>
+																																	<body name="rotary_connector_2_7" pos="0 -0.017 -0.04" quat="0.707105 0.707108 0 0">
+																																		<inertial pos="-6.5746e-08 0.005 0.00035704" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07"/>
+																																		<joint name="rotary_connector_2_7_joint" pos="0 0 0" axis="0 -1 0"/>
+																																		<!-- Visual mesh only (no collision) -->
+																																		<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_2"/>
+																																		<!-- No collision geometry for this part -->
+																																		<body name="rod_2_7" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																																			<inertial pos="-0.0350209 0.0158006 0.0275196" quat="-0.00027424 0.866198 0.000212159 0.499701" mass="0.0120182" diaginertia="1.50991e-05 1.28905e-05 2.65306e-06"/>
+																																			<joint name="rod_2_7_joint" pos="0 0 0" axis="0 -1 -0.00018414"/>
+																																			<!-- Visual mesh only (no collision) -->
+																																			<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rod_2"/>
+																																			<!-- Simplified collision geometry - capsule approximation -->
+																																			<geom type="capsule" size="0.01 0.035" pos="-0.035 0.015 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																																			<body name="rotary_connector_5_7" pos="-0.07 -1.0128e-05 0.055" quat="-3.67321e-06 0 0 1">
+																																				<inertial pos="0 2.236e-06 0.012143" mass="0.0029582" diaginertia="2.2252e-07 1.3682e-07 1.355e-07"/>
+																																				<joint name="rotary_connector_5_7_joint" pos="0 0 0" axis="0 -1 0.00018414"/>
+																																				<!-- Visual mesh only (no collision) -->
+																																				<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.62745 0.62745 0.62745 1" mesh="rotary_connector_5"/>
+																																				<!-- No collision geometry for this part -->
+																																				<body name="top_base_7" pos="-0.035 0.04 0.0125" quat="0 0 0 1">
+																																					<inertial pos="-0.00316689 0.0389291 0.00837195" quat="-0.0188662 0.70606 0.0239272 0.707496" mass="0.100446" diaginertia="0.000104954 5.73207e-05 5.19343e-05"/>
+																																					<site name="site_1_top_base_7" type="sphere" size="0.0015" pos="0.0 0.005 0.0" rgba="1 0 0 1"/>
+																																					<site name="site_2_top_base_7" type="sphere" size="0.0025" pos="0.0315 0.0725 0.0" rgba="0 1 0 1"/>
+																																					<site name="site_3_top_base_7" type="sphere" size="0.0015" pos="-0.035 0.04 0" rgba="0 1 1 1"/>
+																																					<joint name="top_base_7_joint" pos="-0.035 0.04 0" axis="1 0 0"/>
+																																					<!-- Visual mesh only (no collision) -->
+																																					<geom type="mesh" contype="1" conaffinity="1" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="top_base"/>
+																																					<!-- Simplified collision geometry - box approximation -->
+																																					<geom type="box" size="0.02 0.04 0.01" pos="0 0.04 0.01" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																																					
+																																				</body>
+																																			</body>
+																																		</body>
+																																	</body>
+																																	<body name="rotary_connector_3_7" pos="-0.035355 -0.017 0.035355" quat="-0.270602 -0.270596 -0.653283 0.653279">
+																																		<inertial pos="0 0.005 0.000357044" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																																		<joint name="rotary_connector_3_7_joint" pos="0 0 0" axis="0 -1 0"/>
+																																		<!-- Visual mesh only (no collision) -->
+																																		<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_3"/>
+																																		<!-- No collision geometry for this part -->
+																																		<body name="support_rod_7" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																																			<inertial pos="-0.0450011 0.0218276 0.0274999" quat="-4.62052e-06 0.836519 1.4047e-06 0.547938" mass="0.0144478" diaginertia="2.60758e-05 2.18241e-05 4.7952e-06"/>
+																																			<joint name="support_rod_7_joint" pos="0 0 0" axis="0 -1 0"/>
+																																			<!-- Visual mesh only (no collision) -->
+																																			<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0 0 0 1" mesh="support_rod"/>
+																																			<!-- Simplified collision geometry - capsule approximation -->
+																																			<geom type="capsule" size="0.01 0.045" pos="-0.045 0.02 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																																			<body name="rotary_connector_6_7" pos="-0.09 0 0.055" quat="-3.67321e-06 0 0 1">
+																																				<site name="site_rotary_connector_6_7" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="0 1 0 1"/>
+																																				<inertial pos="-1.18443e-10 0 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																																				<joint name="rotary_connector_6_7_joint" pos="0 0 0" axis="0 -1 0"/>
+																																				<!-- Visual mesh only (no collision) -->
+																																				<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_6"/>
+																																				<!-- No collision geometry for this part -->
+																																			</body>
+																																		</body>
+																																	</body>
+																																</body>
+																															</body>
+																														</body>
+																													</body>
+																												</body>
+																												<body name="rotary_connector_3_6" pos="-0.035355 -0.017 0.035355" quat="-0.270602 -0.270596 -0.653283 0.653279">
+																													<inertial pos="0 0.005 0.000357044" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																													<joint name="rotary_connector_3_6_joint" pos="0 0 0" axis="0 -1 0"/>
+																													<!-- Visual mesh only (no collision) -->
+																													<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_3"/>
+																													<!-- No collision geometry for this part -->
+																													<body name="support_rod_6" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																														<inertial pos="-0.0450011 0.0218276 0.0274999" quat="-4.62052e-06 0.836519 1.4047e-06 0.547938" mass="0.0144478" diaginertia="2.60758e-05 2.18241e-05 4.7952e-06"/>
+																														<joint name="support_rod_6_joint" pos="0 0 0" axis="0 -1 0"/>
+																														<!-- Visual mesh only (no collision) -->
+																														<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0 0 0 1" mesh="support_rod"/>
+																														<!-- Simplified collision geometry - capsule approximation -->
+																														<geom type="capsule" size="0.01 0.045" pos="-0.045 0.02 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																														<body name="rotary_connector_6_6" pos="-0.09 0 0.055" quat="-3.67321e-06 0 0 1">
+																															<site name="site_rotary_connector_6_6" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="0 1 0 1"/>
+																															<inertial pos="-1.18443e-10 0 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																															<joint name="rotary_connector_6_6_joint" pos="0 0 0" axis="0 -1 0"/>
+																															<!-- Visual mesh only (no collision) -->
+																															<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_6"/>
+																															<!-- No collision geometry for this part -->
+																														</body>
+																													</body>
+																												</body>
+																											</body>
+																										</body>
+																									</body>
+																								</body>
+																							</body>
+																							<body name="rotary_connector_3_5" pos="-0.035355 -0.017 0.035355" quat="-0.270602 -0.270596 -0.653283 0.653279">
+																								<inertial pos="0 0.005 0.000357044" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																								<joint name="rotary_connector_3_5_joint" pos="0 0 0" axis="0 -1 0"/>
+																								<!-- Visual mesh only (no collision) -->
+																								<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_3"/>
+																								<!-- No collision geometry for this part -->
+																								<body name="support_rod_5" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																									<inertial pos="-0.0450011 0.0218276 0.0274999" quat="-4.62052e-06 0.836519 1.4047e-06 0.547938" mass="0.0144478" diaginertia="2.60758e-05 2.18241e-05 4.7952e-06"/>
+																									<joint name="support_rod_5_joint" pos="0 0 0" axis="0 -1 0"/>
+																									<!-- Visual mesh only (no collision) -->
+																									<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0 0 0 1" mesh="support_rod"/>
+																									<!-- Simplified collision geometry - capsule approximation -->
+																									<geom type="capsule" size="0.01 0.045" pos="-0.045 0.02 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																									<body name="rotary_connector_6_5" pos="-0.09 0 0.055" quat="-3.67321e-06 0 0 1">
+																										<site name="site_rotary_connector_6_5" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="0 1 0 1"/>
+																										<inertial pos="-1.18443e-10 0 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																										<joint name="rotary_connector_6_5_joint" pos="0 0 0" axis="0 -1 0"/>
+																										<!-- Visual mesh only (no collision) -->
+																										<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_6"/>
+																										<!-- No collision geometry for this part -->
+																									</body>
+																								</body>
+																							</body>
+																						</body>
+																					</body>
+																				</body>
+																			</body>
+																		</body>
+																		<body name="rotary_connector_3_4" pos="-0.035355 -0.017 0.035355" quat="-0.270602 -0.270596 -0.653283 0.653279">
+																			<inertial pos="0 0.005 0.000357044" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																			<joint name="rotary_connector_3_4_joint" pos="0 0 0" axis="0 -1 0"/>
+																			<!-- Visual mesh only (no collision) -->
+																			<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_3"/>
+																			<!-- No collision geometry for this part -->
+																			<body name="support_rod_4" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+																				<inertial pos="-0.0450011 0.0218276 0.0274999" quat="-4.62052e-06 0.836519 1.4047e-06 0.547938" mass="0.0144478" diaginertia="2.60758e-05 2.18241e-05 4.7952e-06"/>
+																				<joint name="support_rod_4_joint" pos="0 0 0" axis="0 -1 0"/>
+																				<!-- Visual mesh only (no collision) -->
+																				<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0 0 0 1" mesh="support_rod"/>
+																				<!-- Simplified collision geometry - capsule approximation -->
+																				<geom type="capsule" size="0.01 0.045" pos="-0.045 0.02 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0"/>
+																				<body name="rotary_connector_6_4" pos="-0.09 0 0.055" quat="-3.67321e-06 0 0 1">
+																					<site name="site_rotary_connector_6_4" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="0 1 0 1"/>
+																					<inertial pos="-1.18443e-10 0 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07"/>
+																					<joint name="rotary_connector_6_4_joint" pos="0 0 0" axis="0 -1 0"/>
+																					<!-- Visual mesh only (no collision) -->
+																					<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_6"/>
+																					<!-- No collision geometry for this part -->
+																				</body>
+																			</body>
+																		</body>
+																	</body>
+																</body>
+															</body>
+														</body>
+													</body>
+													<body name="rotary_connector_3_3" pos="-0.035355 -0.017 0.035355" quat="-0.270602 -0.270596 -0.653283 0.653279">
+														<inertial pos="0 0.005 0.000357044" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+														<joint name="rotary_connector_3_3_joint" pos="0 0 0" axis="0 -1 0" />
+														<!-- Visual mesh only (no collision) -->
+														<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_3" />
+														<!-- No collision geometry for this part -->
+														<body name="support_rod_3" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+															<inertial pos="-0.0450011 0.0218276 0.0274999" quat="-4.62052e-06 0.836519 1.4047e-06 0.547938" mass="0.0144478" diaginertia="2.60758e-05 2.18241e-05 4.7952e-06" />
+															<joint name="support_rod_3_joint" pos="0 0 0" axis="0 -1 0" />
+															<!-- Visual mesh only (no collision) -->
+															<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0 0 0 1" mesh="support_rod" />
+															<!-- Simplified collision geometry -
+															capsule approximation -->
+															<geom type="capsule" size="0.01 0.045" pos="-0.045 0.02 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+															<body name="rotary_connector_6_3" pos="-0.09 0 0.055" quat="-3.67321e-06 0 0 1">
+																<site name="site_rotary_connector_6_3" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="0 1 0 1" />
+																<inertial pos="-1.18443e-10 0 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+																<joint name="rotary_connector_6_3_joint" pos="0 0 0" axis="0 -1 0" />
+																<!-- Visual mesh only (no collision) -->
+																<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_6" />
+																<!-- No collision geometry for this
+																part -->
+															</body>
+														</body>
+													</body>
+												</body>
+											</body>
+										</body>
+									</body>
+								</body>
+								<body name="rotary_connector_3_2" pos="-0.035355 -0.017 0.035355" quat="-0.270602 -0.270596 -0.653283 0.653279">
+									<inertial pos="0 0.005 0.000357044" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+									<joint name="rotary_connector_3_2_joint" pos="0 0 0" axis="0 -1 0" />
+									<!-- Visual mesh only (no collision) -->
+									<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_3" />
+									<!-- No collision geometry for this part -->
+									<body name="support_rod_2" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+										<inertial pos="-0.0450011 0.0218276 0.0274999" quat="-4.62052e-06 0.836519 1.4047e-06 0.547938" mass="0.0144478" diaginertia="2.60758e-05 2.18241e-05 4.7952e-06" />
+										<joint name="support_rod_2_joint" pos="0 0 0" axis="0 -1 0" />
+										<!-- Visual mesh only (no collision) -->
+										<geom type="mesh" contype="0" conaffinity="0" group="1" material="mat_cyan" mesh="support_rod" />
+										<!-- Simplified collision geometry - capsule approximation -->
+										<geom type="capsule" size="0.01 0.045" pos="-0.045 0.02 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+										<body name="rotary_connector_6_2" pos="-0.09 0 0.055" quat="-3.67321e-06 0 0 1">
+											<site name="site_rotary_connector_6_2" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="0 1 0 1" />
+											<inertial pos="-1.18443e-10 0 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+											<joint name="rotary_connector_6_2_joint" pos="0 0 0" axis="0 -1 0" />
+											<!-- Visual mesh only (no collision) -->
+											<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_6" />
+											<!-- No collision geometry for this part -->
+										</body>
+									</body>
+								</body>
+							</body>
+							<!-- end of baselink 2 body  -->
+						</body>
+					</body>
+				</body>
+			</body>
+			<body name="rotary_connector_3" pos="-0.035355 -0.017 0.035355" quat="-0.270602 -0.270596 -0.653283 0.653279">
+				<inertial pos="0 0.005 0.000357044" quat="0.707107 0 0 0.707107" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+				<joint name="rotary_connector_3_joint" pos="0 0 0" axis="0 -1 0" />
+				<!-- Visual mesh only (no collision) -->
+				<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_3" />
+				<!-- No collision geometry for this part -->
+				<body name="support_rod" pos="0 0.005 0.0125" quat="0.707105 0 0 -0.707108">
+					<inertial pos="-0.0450011 0.0218276 0.0274999" quat="-4.62052e-06 0.836519 1.4047e-06 0.547938" mass="0.0144478" diaginertia="2.60758e-05 2.18241e-05 4.7952e-06" />
+					<joint name="support_rod_joint" pos="0 0 0" axis="0 -1 0" />
+					<!-- Visual mesh only (no collision) -->
+					<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="1 1 1 1" mesh="support_rod" />
+					<!-- Simplified collision geometry - capsule approximation -->
+					<geom type="capsule" size="0.01 0.045" pos="-0.045 0.02 0.0275" quat="0.707 0 0.707 0" rgba="0.627451 0.627451 0.627451 0" contype="0" conaffinity="0" />
+					<body name="rotary_connector_6" pos="-0.09 0 0.055" quat="-3.67321e-06 0 0 1">
+						<site name="site_rotary_connector_6" type="sphere" size="0.0015" pos="0 0 0.0125" rgba="0 1 0 1" />
+						<inertial pos="-1.18443e-10 0 0.012143" mass="0.0029582" diaginertia="2.22521e-07 1.36818e-07 1.35501e-07" />
+						<joint name="rotary_connector_6_joint" pos="0 0 0" axis="0 -1 0" />
+						<!-- Visual mesh only (no collision) -->
+						<geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.627451 0.627451 0.627451 1" mesh="rotary_connector_6" />
+						<!-- No collision geometry for this part -->
+					</body>
+				</body>
+			</body>
+		</body>
+	</worldbody>
+
+	<equality>
+		<weld name="weld_pos_1" active="true" body1="rotary_connector_4" body2="top_base" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_1" joint1="rotary_connector_4_joint" joint2="top_base_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+		<weld name="weld_pos_2" active="true" body1="rotary_connector_6" body2="top_base" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_2" joint1="rotary_connector_6_joint" joint2="top_base_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+		<weld name="weld_pos_1_2" active="true" body1="rotary_connector_4_2" body2="top_base_2" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_1_2" joint1="rotary_connector_4_2_joint" joint2="top_base_2_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+		<weld name="weld_pos_2_2" active="true" body1="rotary_connector_6_2" body2="top_base_2" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_2_2" joint1="rotary_connector_6_2_joint" joint2="top_base_2_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+		<weld name="weld_pos_1_3" active="true" body1="rotary_connector_4_3" body2="top_base_3" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_1_3" joint1="rotary_connector_4_3_joint" joint2="top_base_3_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+		<weld name="weld_pos_2_3" active="true" body1="rotary_connector_6_3" body2="top_base_3" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_2_3" joint1="rotary_connector_6_3_joint" joint2="top_base_3_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+		<weld name="weld_pos_1_4" active="true" body1="rotary_connector_4_4" body2="top_base_3" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_1_4" joint1="rotary_connector_4_4_joint" joint2="top_base_3_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+		<weld name="weld_pos_2_4" active="true" body1="rotary_connector_6_4" body2="top_base_4" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_2_4" joint1="rotary_connector_6_4_joint" joint2="top_base_4_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+		<weld name="weld_pos_2_5" active="true" body1="rotary_connector_6_5" body2="top_base_5" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_2_5" joint1="rotary_connector_6_5_joint" joint2="top_base_5_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+	
+		<weld name="weld_pos_2_6" active="true" body1="rotary_connector_6_6" body2="top_base_6" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_2_6" joint1="rotary_connector_6_6_joint" joint2="top_base_6_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+		<weld name="weld_pos_2_7" active="true" body1="rotary_connector_6_7" body2="top_base_7" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_2_7" joint1="rotary_connector_6_7_joint" joint2="top_base_7_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+	
+		<weld name="weld_pos_1_5" active="true" body1="rotary_connector_4_5" body2="top_base_5" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_1_5" joint1="rotary_connector_4_5_joint" joint2="top_base_5_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+		<weld name="weld_pos_1_6" active="true" body1="rotary_connector_4_6" body2="top_base_6" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_1_6" joint1="rotary_connector_4_6_joint" joint2="top_base_6_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+		<weld name="weld_pos_1_7" active="true" body1="rotary_connector_4_7" body2="top_base_7" solref=".02 1" solimp="9000 9500 1000" />
+		<joint name="joint_1_7" joint1="rotary_connector_4_7_joint" joint2="top_base_7_joint" polycoef="0 1 0 0 0" solref=".02 1" solimp="9 9.5 0.01" />
+
+	</equality>
+
+	<actuator>
+		<!-- Actuators for all legs -->
+		<position name="vertical_1" joint="rotary_connector_1_joint" gear="20" ctrlrange="-5 5" />
+		<position name="horizontal_1" joint="top_base_joint" gear="20" ctrlrange="-5 5" />
+		<position name="vertical_2" joint="rotary_connector_1_2_joint" gear="20" ctrlrange="-5 5" />
+		<position name="horizontal_2" joint="top_base_2_joint" gear="20" ctrlrange="-5 5" />
+		<position name="vertical_3" joint="rotary_connector_1_3_joint" gear="20" ctrlrange="-5 5" />
+		<position name="horizontal_3" joint="top_base_3_joint" gear="20" ctrlrange="-5 5" />
+		<position name="vertical_4" joint="rotary_connector_1_4_joint" gear="20" ctrlrange="-5 5" />
+		<position name="horizontal_4" joint="top_base_4_joint" gear="20" ctrlrange="-5 5" />
+		<position name="vertical_5" joint="rotary_connector_1_5_joint" gear="20" ctrlrange="-5 5" />
+		<position name="horizontal_5" joint="top_base_5_joint" gear="20" ctrlrange="-5 5" />
+		<position name="vertical_6" joint="rotary_connector_1_6_joint" gear="20" ctrlrange="-5 5" />
+		<position name="horizontal_6" joint="top_base_6_joint" gear="20" ctrlrange="-5 5" />
+		<position name="vertical_7" joint="rotary_connector_1_7_joint" gear="20" ctrlrange="-5 5" />
+		<position name="horizontal_7" joint="top_base_7_joint" gear="20" ctrlrange="-5 5" />
+		
+	</actuator>
+</mujoco>
