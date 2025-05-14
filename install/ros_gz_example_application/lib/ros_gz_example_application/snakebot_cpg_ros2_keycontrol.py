@@ -1,1 +1,0 @@
-/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/ros_gz_example_application/src/snakebot_cpg_ros2_keycontrol.py

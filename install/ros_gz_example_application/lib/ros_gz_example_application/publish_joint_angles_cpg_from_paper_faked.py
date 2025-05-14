@@ -1,1 +1,0 @@
-/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/ros_gz_example_application/src/publish_joint_angles_cpg_from_paper_faked.py
