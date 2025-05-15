@@ -2,6 +2,7 @@
 
 This guide provides a step-by-step walkthrough for setting up and running the **MuJoCo-based simulation** of a snake robot, located in your `snake_robot_harmonic_ws` workspace. This simulation is **standalone**—it does **not use ROS or Gazebo**—and is implemented purely using **MuJoCo and Python**.
 
+![Snake Robot Model](screenshot.png)
 ---
 
 ## 📁 Project Structure Overview
@@ -81,6 +82,9 @@ Based on a central pattern generator (CPG) research model.
 ```bash
 python src/SnakeBot/multi_neuron_cpg_control.py
 ```
+### 🧠 Multi-Neuron CPG Controller (Simulation)
+
+![Multi Neuron CPG Demo](multi_neoron_cpg.gif)
 
 ### C. Run FLEXER CPG Sinusoidal Controller
 
@@ -90,6 +94,9 @@ Another research-based controller using FLEXER and sinusoidal inputs.
 python src/SnakeBot/FLEXER_CPG_Sinusoidal_Control_Snake_Robot_Locomotion.py
 ```
 
+### 🌊 FLEXER CPG Sinusoidal Controller (Simulation)
+
+![FLEXER CPG Demo](Flexer_CPG.gif)
 ---
 
 ## 🧩 Notes and Recommendations
