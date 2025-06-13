@@ -1,0 +1,11 @@
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-F_Cu.gbr'.
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-B_Cu.gbr'.
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-F_Paste.gbr'.
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-B_Paste.gbr'.
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-F_Silkscreen.gbr'.
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-B_Silkscreen.gbr'.
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-F_Mask.gbr'.
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-B_Mask.gbr'.
+Plotted to 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-Edge_Cuts.gbr'.
+Created Gerber job file 'C:\Users\devth\OneDrive\Desktop\ERC\snakebot\Snakebot_pcb_dev_2\Snakebot_pcb_dev_f\Snakebot_pcb_dev-job.gbrjob'.
+Info: Done.
