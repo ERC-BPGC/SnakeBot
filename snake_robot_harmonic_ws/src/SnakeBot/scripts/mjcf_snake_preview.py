@@ -1,10 +1,14 @@
 import mujoco
 import mujoco.viewer
 import time 
-MJCF_PATH = "/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/SnakeBot/scene.xml"
+from pathlib import Path
+
+# Go up one directory from the script, then point to scene.xml
+MJCF_PATH = Path(__file__).resolve().parent.parent / "scene.xml"
+
 
 # Load the model
-model = mujoco.MjModel.from_xml_path(MJCF_PATH)
+model = mujoco.MjModel.from_xml_path(str(MJCF_PATH))
 data = mujoco.MjData(model)
 
 

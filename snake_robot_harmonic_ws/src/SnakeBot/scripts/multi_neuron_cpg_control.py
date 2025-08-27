@@ -64,7 +64,14 @@ phi_trajectory = odeint(gradient_system, phi_init, time_vec)
 num_joints = 14
 
 # MuJoCo model loading
-model = mujoco.MjModel.from_xml_path("/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/SnakeBot/scene.xml")
+# Path to the MJCF file
+from pathlib import Path
+
+# Go up one directory from the script, then point to scene.xml
+MJCF_PATH = Path(__file__).resolve().parent.parent / "scene.xml"
+
+# Load the model
+model = mujoco.MjModel.from_xml_path(str(MJCF_PATH))
 data = mujoco.MjData(model)
 
 # Parameters for control sliders
