@@ -64,7 +64,7 @@ phi_trajectory = odeint(gradient_system, phi_init, time_vec)
 num_joints = 14
 
 # MuJoCo model loading
-model = mujoco.MjModel.from_xml_path("/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/SnakeBot/scene.xml")
+model = mujoco.MjModel.from_xml_path("scene.xml")
 data = mujoco.MjData(model)
 
 # Parameters for control sliders
@@ -153,6 +153,7 @@ save_button.pack(pady=10)
 for slider in [amp_slider_h, freq_slider_h, phase_slider_h, offset_slider_h,
                amp_slider_v, freq_slider_v, phase_slider_v, offset_slider_v]:
     slider.config(command=lambda x: update_params())
+com_positions = []  # To store [time, x, y]
 
 # Function to run MuJoCo in a separate thread
 def mujoco_simulation():
@@ -173,9 +174,9 @@ def mujoco_simulation():
             for j in range(num_joints):
                 phase = cpg_phases[j % n]
                 if j % 2 == 0:
-                    control_value = amplitude_h * np.sin(2 * np.pi * frequency_h * sim_t + phase + phase_shift_h) + offset_h
+                    control_value = amplitude_h * np.sin(frequency_h * sim_t + phase + phase_shift_h) +np.sin( offset_h*sim_t)
                 else:
-                    control_value = amplitude_v * np.sin(2 * np.pi * frequency_v * sim_t + phase + phase_shift_v) + offset_v
+                    control_value = amplitude_v * np.sin( frequency_v * sim_t + phase + phase_shift_v) + np.sin( offset_v*sim_t)
                 data.ctrl[j] = control_value + angle
 
             # Step the simulation forward

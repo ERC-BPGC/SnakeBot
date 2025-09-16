@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 
 # Path to the MJCF file
-MJCF_PATH = "/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/SnakeBot/scene.xml"
+MJCF_PATH = "scene.xml"
 
 # Load the model
 model = mujoco.MjModel.from_xml_path(MJCF_PATH)

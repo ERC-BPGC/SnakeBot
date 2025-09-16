@@ -1,0 +1,8 @@
+Amplitude (Horizontal): 0.8770
+Frequency (Horizontal): 1.5148
+Phase Shift (Horizontal): 0.4525
+Offset (Horizontal): 0.6030
+Amplitude (Vertical): 0.4745
+Frequency (Vertical): 1.5956
+Phase Shift (Vertical): 1.8638
+Offset (Vertical): -0.3077

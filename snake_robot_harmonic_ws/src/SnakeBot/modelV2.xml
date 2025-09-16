@@ -1,5 +1,5 @@
 <mujoco model="Snakebot">
-	<compiler angle="radian" meshdir="/home/harikrishnan/ROS_PROJECTS/snake_robot_harmonic_ws/src/Snakebot/meshes/" />
+	<compiler angle="radian" meshdir="./" />
 	<option gravity="0 0 -9.81" />
 	<asset>
 		<material name="mat_red" rgba="1 0 0 1" />
