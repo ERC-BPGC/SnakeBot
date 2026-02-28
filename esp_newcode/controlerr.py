@@ -3,12 +3,12 @@ import json
 import paho.mqtt.client as mqtt
 
 # --- CONFIGURATION ---
-MQTT_BROKER = "172.20.10.2"  # CHANGE TO YOUR BROKER IP
+MQTT_BROKER = "10.130.96.203"  # CHANGE TO YOUR BROKER IP
 MQTT_PORT = 1883
 MQTT_TOPIC = "servos/sync_command"
 
 # How far in the future to schedule the FIRST move (seconds)
-INITIAL_DELAY = 0.5 
+INITIAL_DELAY = 5
 
 def on_connect(client, userdata, flags, reason_code, properties):
     if reason_code == 0:
@@ -48,13 +48,13 @@ def send_movement(esp1_angles, esp2_angles, delay_offset=0):
     delay_offset: seconds from NOW to execute
     """
     current_time = time.time()
-    target_timestamp = int((current_time + INITIAL_DELAY + delay_offset) * 1000)
+    target_timestamp = int((current_time + 4*INITIAL_DELAY + delay_offset) * 1000)
 
     payload = {
         "ts": target_timestamp,
         "data": {
-            "ESP_01": esp1_angles,
-            "ESP_02": esp2_angles
+            "ESP_03": esp1_angles,
+            "ESP_05": esp2_angles
         }
     }
     
@@ -88,14 +88,14 @@ try:
             
             # Move 1: t + 0.5s
             send_movement([0, 0], [0, 0], delay_offset=0) 
-            time.sleep(0.1)  # Small delay between publishes
+            # time.sleep(0.1)  # Small delay between publishes
             
             # Move 2: t + 1.5s
-            send_movement([90, 90], [90, 90], delay_offset=1.0) 
-            time.sleep(0.1)
+            send_movement([30, 30], [30, 30], delay_offset=0.1) 
+            # time.sleep(0.1)
             
             # Move 3: t + 2.5s
-            send_movement([180, 180], [180, 180], delay_offset=2.0)
+            send_movement([60, 60], [60, 60], delay_offset=0.2)
             print("✓ All moves queued")
             
         elif choice == '3':
