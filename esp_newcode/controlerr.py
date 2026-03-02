@@ -3,7 +3,7 @@ import json
 import paho.mqtt.client as mqtt
 
 # --- CONFIGURATION ---
-MQTT_BROKER = "10.130.96.203"  # CHANGE TO YOUR BROKER IP
+MQTT_BROKER = "10.130.96.173"  # CHANGE TO YOUR BROKER IP
 MQTT_PORT = 1883
 MQTT_TOPIC = "servos/sync_command"
 

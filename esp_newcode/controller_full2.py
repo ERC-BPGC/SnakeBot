@@ -15,11 +15,11 @@ from copy import deepcopy
 import keyboard
 
 # --- MQTT CONFIGURATION ---
-MQTT_BROKER = "10.130.96.203"  # CHANGE TO YOUR BROKER IP
+MQTT_BROKER = "10.52.183.173"  # CHANGE TO YOUR BROKER IP
 MQTT_PORT = 1883
 MQTT_TOPIC = "servos/sync_command"
-INITIAL_DELAY = 5 
-PUBLISH_INTERVAL = 0.2  # <--- NEW: Seconds to wait between sending commands (Prevents ESP queue overflow)
+INITIAL_DELAY = 1
+PUBLISH_INTERVAL = 0.03  # <--- NEW: Seconds to wait between sending commands (Prevents ESP queue overflow)
 
 def on_connect(client, userdata, flags, reason_code, properties):
     if reason_code == 0:
@@ -68,18 +68,18 @@ still_not_found =True
 colors =['red','blue']
 
 # User inputs for required number of segments, length, amplitudes, wavelength, and error margin
-num_segments=5
+num_segments=6
 req_length = 1.14
-req_amplitude_z = 0.8
-req_amplitude_y = 0
+req_amplitude_z = 0.4
+req_amplitude_y = 0.4
 A1=0
 num_path_points = 0
 R=req_length/2
 approximation_circle_dist=0.17
 
-path_points_x = [0,3,4,20]
-path_points_y = [0,3,4,20]
-frequency = 2 # Math frequency for the sine wave
+path_points_x = [0,3,4,6]
+path_points_y = [0,3,4,6]
+frequency = 3 # Math frequency for the sine wave
 
 # Convert lists to a numpy array
 points = np.array([path_points_x, path_points_y])
@@ -106,12 +106,14 @@ plt.subplots_adjust(left=0.1, bottom=0.25)
 ax.set_box_aspect([1, 1, 1])  
 
 # Plot the original spline in 3D (XY plane)
-ax.plot(x_new, y_new, np.zeros_like(x_new), label='Original Spline', color='red')
+# ax.plot(x_new, y_new, np.zeros_like(x_new), label='Original Spline', color='red')
 
 # Initial sine wave plot in 3D
-x_sine_wave = A1 + x_new + req_amplitude_y * np.sin(2 * np.pi *frequency * u_new) * dx_normalized
-y_sine_wave = A1 + y_new + req_amplitude_y * np.sin(2 * np.pi *frequency * u_new) * dy_normalized
-z_wave = req_amplitude_z * np.abs(np.sin(2 * np.pi *frequency * u_new))
+phase = 0
+multiplier = 1.5*u_new
+x_sine_wave = A1 + x_new + multiplier*req_amplitude_y * np.sin(2 * np.pi *frequency * u_new+1+phase) * dx_normalized
+y_sine_wave = A1 + y_new + multiplier*req_amplitude_y * np.sin(2 * np.pi *frequency * u_new+1+phase) * dy_normalized
+z_wave = req_amplitude_z * np.abs(np.sin(2 * np.pi *frequency * u_new+1+phase))
 
 sine_wave_line, = ax.plot(x_sine_wave, y_sine_wave, z_wave, label='3D Spline with Sine Waves', color='green')
 
@@ -125,9 +127,11 @@ angles_real_per_iteration=[]
 
 offset =0
 answers_per_iteration.append([0,0,0])
-
-while(offset<accuracylevel):
-    for i in range(offset,len(x_sine_wave)):
+once =True
+phaseshiftercount=0
+kitneAngleChahiye=200
+while(phaseshiftercount<kitneAngleChahiye):
+    for i in range(len(x_sine_wave)):
         if(sqrt((x_sine_wave[i]-answers_per_iteration[-1][0])**2+(y_sine_wave[i]-answers_per_iteration[-1][1])**2+(z_wave[i]-answers_per_iteration[-1][2])**2)>req_length):
             answers_per_iteration.append([x_sine_wave[i],y_sine_wave[i],z_wave[i]])
         if(len(answers_per_iteration)==num_segments+1):
@@ -137,22 +141,62 @@ while(offset<accuracylevel):
                 if j:
                     angles_relative_per_iteration.append(tuple([round(180+angles_ground_apparent[j][0]-angles_ground_apparent[j-1][0],3),round(180+angles_ground_apparent[j][1]-angles_ground_apparent[j-1][1],3)]))
                     angles_real_per_iteration.append(tuple([round(180+angles_ground_real[j][0]-angles_ground_real[j-1][0],3),round(180+angles_ground_real[j][1]-angles_ground_real[j-1][1],3)]))
+
             break
-            
     if(len(answers_per_iteration)<num_segments+1):
         break
-        
-    answers.append(deepcopy(answers_per_iteration))
+    # print("Then This appends...")
+    answers.append(deepcopy(answers_per_iteration))#normal copy was giving some issues
+
+    angles_real_per_iteration
     angles_real.append(deepcopy(angles_real_per_iteration))
+    # print(angles_real)
     angles_relative.append(deepcopy(angles_relative_per_iteration))
     answers_per_iteration.clear()
     angles_real_per_iteration.clear()
     angles_ground_apparent.clear()
     angles_ground_real.clear()
-    angles_relative_per_iteration.clear()
-    offset+=int(accuracylevel/150)
-    answers_per_iteration.append([x_sine_wave[offset],y_sine_wave[offset],z_wave[offset]])
 
+
+    angles_relative_per_iteration.clear()
+    answers_per_iteration.append([x_sine_wave[offset],y_sine_wave[offset],z_wave[offset]])
+    phase +=5*(2*np.pi/kitneAngleChahiye)
+    x_sine_wave =A1+ x_new + multiplier*req_amplitude_y * np.sin(2 * np.pi *frequency * u_new+1+phase) * dx_normalized
+    y_sine_wave = A1+y_new + multiplier*req_amplitude_y * np.sin(2 * np.pi *frequency * u_new+1+phase) * dy_normalized
+    z_wave = req_amplitude_z * np.abs(np.sin(2 * np.pi *frequency * u_new+1+phase))
+    phaseshiftercount+=1
+
+# while(offset<accuracylevel):
+#     for i in range(offset,len(x_sine_wave)):
+#         if(sqrt((x_sine_wave[i]-answers_per_iteration[-1][0])**2+(y_sine_wave[i]-answers_per_iteration[-1][1])**2+(z_wave[i]-answers_per_iteration[-1][2])**2)>req_length):
+#             answers_per_iteration.append([x_sine_wave[i],y_sine_wave[i],z_wave[i]])
+#         if(len(answers_per_iteration)==num_segments+1):
+#             for j in range(0,len(answers_per_iteration)-1):
+#                 angles_ground_apparent.append([atan((answers_per_iteration[j+1][1]-answers_per_iteration[j][1])/(answers_per_iteration[j+1][0]-answers_per_iteration[j][0]))*180/np.pi,atan((answers_per_iteration[j+1][2]-answers_per_iteration[j][2])/(answers_per_iteration[j+1][0]-answers_per_iteration[j][0]))*180/np.pi])
+#                 angles_ground_real.append([atan((answers_per_iteration[j+1][1]-answers_per_iteration[j][1])/sqrt((answers_per_iteration[j+1][0]-answers_per_iteration[j][0])**2+(answers_per_iteration[j+1][2]-answers_per_iteration[j][2])**2))*180/np.pi,atan((answers_per_iteration[j+1][2]-answers_per_iteration[j][2])/sqrt((answers_per_iteration[j+1][0]-answers_per_iteration[j][0])**2+(answers_per_iteration[j+1][1]-answers_per_iteration[j][1])**2))*180/np.pi])
+#                 if j:
+#                     angles_relative_per_iteration.append(tuple([round(180+angles_ground_apparent[j][0]-angles_ground_apparent[j-1][0],3),round(180+angles_ground_apparent[j][1]-angles_ground_apparent[j-1][1],3)]))
+#                     angles_real_per_iteration.append(tuple([round(180+angles_ground_real[j][0]-angles_ground_real[j-1][0],3),round(180+angles_ground_real[j][1]-angles_ground_real[j-1][1],3)]))
+
+#             break
+
+            
+#     if(len(answers_per_iteration)<num_segments+1):
+#         break
+        
+#     answers.append(deepcopy(answers_per_iteration))
+#     angles_real.append(deepcopy(angles_real_per_iteration))
+#     angles_relative.append(deepcopy(angles_relative_per_iteration))
+#     answers_per_iteration.clear()
+#     angles_real_per_iteration.clear()
+#     angles_ground_apparent.clear()
+#     angles_ground_real.clear()
+#     angles_relative_per_iteration.clear()
+#     offset+=int(accuracylevel/150)
+#     answers_per_iteration.append([x_sine_wave[offset],y_sine_wave[offset],z_wave[offset]])
+
+for item in angles_real:
+    print(item)#(horizontal,vertial)
 max_dist =max(max(path_points_x),max(path_points_y))
 ax.set_xlim(0,max_dist)
 ax.set_ylim(0,max_dist)
@@ -206,8 +250,8 @@ try:
                 angle_2 = atan(R*sin((180-angle_pair[1])*np.pi/180)/(R*cos((180-angle_pair[1])*np.pi/180)-approximation_circle_dist))*180/np.pi
                 
                 # Format exactly as before: min 70, max 110 constraints
-                s1 = min(110,max(90-int(angle_1),70))
-                s2 = min(110,max(90-int(angle_2),70))
+                s1 = min(115,max(90-int(angle_1),65))#this only for catterpillar design, for snake design it should be angle_1 instead of 0
+                s2 = min(115,max(90-int(angle_2),65))
                 calculated_pairs.append([s2, s1]) # Note the order swap to match (x,y) -> (servo1, servo2)
             
             # Convert float seconds into integer milliseconds for the MQTT payload
@@ -224,11 +268,11 @@ try:
             time.sleep(PUBLISH_INTERVAL)
             tempcount+=1
             
-            if(keyboard.is_pressed('p')):
+            if(keyboard.is_pressed('a')):
                 print("paused")
                 time.sleep(2)
                 while(True):
-                    if(keyboard.is_pressed('p')):
+                    if(keyboard.is_pressed('a')):
                         print("continuing")
                         # Realignment: Push the target timestamp into the future to account for the pause
                         next_execution_time = time.time() + INITIAL_DELAY

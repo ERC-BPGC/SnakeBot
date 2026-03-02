@@ -8,12 +8,12 @@
 // --- CONFIGURATION ---
 const char* ssid = "Snakebot";
 const char* password = "12345678";
-const char* mqtt_server = "172.20.10.2"; // Updated to your Hotspot IP
+const char* mqtt_server = "10.52.183.173"; // Updated to your Hotspot IP
 
 const char* THIS_ESP_ID = "ESP_01"; 
 
-const int SERVO_PIN_1 = 18;
-const int SERVO_PIN_2 = 19;
+const int SERVO_PIN_1 = 32;
+const int SERVO_PIN_2 = 33;
 
 // --- MULTITASKING & QUEUE CONFIG ---
 #define MAX_QUEUE_SIZE 50 
@@ -150,7 +150,8 @@ void networkTask(void * parameter) {
 void servoTask(void * parameter) {
   servo1.attach(SERVO_PIN_1);
   servo2.attach(SERVO_PIN_2);
-
+  servo1.write(90);
+  servo2.write(90);
   for (;;) {
     unsigned long long currentMs = getCurrentMillis();
     bool shouldExecute = false;
